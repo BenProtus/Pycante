@@ -12,8 +12,13 @@
 * List Ranges? Comprehensions?
 * String Interpolation?
 * For loop, while loop, if statement
-* Composition and object orientation. 
+* Composition and object orientation.
 
+## Data Types:
+* Number: 4, 27.3, -13.0182
+* Boolean: true, false
+* String: “Spicy” , “Un poco picante”, “\“What does a nosy pepper do?\”\n\“It gets Jalepeño business!\”
+* Comments: ~ Single Line Comment; |- Multi line comment -|
 
 ## Examples
 Variable declaration.
