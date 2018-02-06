@@ -1,0 +1,24 @@
+{
+  "name": "pycante",
+  "version": "1.0.0",
+  "description": "pycante",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenProtusSmith/Pycante.git"
+  },
+  "keywords": [
+    "pyconte",
+    "programming",
+    "language"
+  ],
+  "author": "Abdulaziz/Basil/Ben/Marissa/Jordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenProtusSmith/Pycante/issues"
+  },
+  "homepage": "https://github.com/BenProtusSmith/Pycante#readme"
+}
