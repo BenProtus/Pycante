@@ -68,3 +68,13 @@ let addition = 10 + 20
 let multiplication = 10 * 12
 
 ```
+
+Conditional statement
+
+```
+let x = 10
+let y = 20 
+if (x < 20)
+    ~Do something
+
+```
