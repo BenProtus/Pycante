@@ -133,3 +133,28 @@ console.hot(number)
     🔥: 'number' is not initialized.  
 
 ```
+
+Type Inference. what() function is used to infer the type of something.
+
+```
+let x = 10 
+
+what(x)
+    number
+
+let str = "Hello"
+
+what(str)
+    string
+
+let isTrue = true
+
+what(isTrue)
+    boolean
+
+let something
+
+what(something)
+    🔥: 'something' does not have a type
+    
+```
