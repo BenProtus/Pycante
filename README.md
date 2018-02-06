@@ -87,7 +87,7 @@ let y = 20
 if (x < 20)
     ~Do something
  else 
-    ~ Dp something else.
+    ~ Do something else.
     
 ```
 
