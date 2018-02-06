@@ -100,3 +100,15 @@ let array = [1, 2, 3, 4]
 for (let index = 0; index < 4; index++ )
         ~Do something. 
 ```
+
+
+Iteration. while
+
+
+```
+let array = [1, 2, 3, 4]
+
+let index = 0
+while (index < 4)
+        ~Do something. 
+```
