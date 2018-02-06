@@ -13,3 +13,16 @@
 * String Interpolation?
 * For loop, while loop, if statement
 * Composition and object orientation. 
+
+
+## Examples
+
+```
+~ variable declaration
+let x = 12
+
+let y = 10
+
+let z = 0 
+
+```
