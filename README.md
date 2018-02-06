@@ -112,3 +112,24 @@ let index = 0
 while (index < 4)
         ~Do something. 
 ```
+
+Printing. console.hot()
+
+```
+let x = 10 
+
+console.hot(x)
+   10
+let string = "hello"
+
+console.hot(string)
+    hello
+
+~ This is an error
+
+let number
+
+console.hot(number)
+    🔥: 'number' is not initialized.  
+
+```
