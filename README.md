@@ -91,3 +91,12 @@ if (x < 20)
     
 ```
 
+Iteration. for loop
+
+
+```
+let array = [1, 2, 3, 4]
+
+for (let index = 0; index < 4; index++ )
+        ~Do something. 
+```
