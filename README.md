@@ -16,7 +16,6 @@
 
 
 ## Examples
-
 ```
 ~ variable declaration
 let x = 12
