@@ -1,5 +1,5 @@
 # Pycante
-![Main Menu](logo.png){width = 50%}
+![Main Menu](logo.png)
 
 ## Introduction
 Pycante is the world’s hottest programming language, taking inspiration from the functional capabilities of Javascript and blending in the spacing of Python to bring the user the most intuitive, pleasing experience. Boasting dictionary capabilities, and both static typing and scoping, Pycante is the future of learnable, readable, and reusable code.
@@ -29,6 +29,13 @@ Pycante is the world’s hottest programming language, taking inspiration from t
 * Increment/Decrement: a++, a--
 * Warning: 🔥
 * Function: 🌶️
+
+## Data Types
+* Number: 4, 27.3, -13.0182
+* Boolean: true, false
+* String: “Spicy” , “Un poco picante”, “\“What does a nosy pepper do?\”\n\“It gets Jalepeño business!\”
+* Comments: ~ Single Line Comment; |- Multi line comment -|
+
 
 ## Examples
 ```
