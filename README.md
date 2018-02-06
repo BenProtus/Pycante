@@ -69,7 +69,7 @@ let multiplication = 10 * 12
 
 ```
 
-Conditional statement
+Conditional statement: if
 
 ```
 let x = 10
@@ -78,3 +78,16 @@ if (x < 20)
     ~Do something
 
 ```
+
+Conditional statement: if else
+
+```
+let x = 10
+let y = 20 
+if (x < 20)
+    ~Do something
+ else 
+    ~ Dp something else.
+    
+```
+
