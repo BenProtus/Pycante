@@ -14,6 +14,19 @@
 * For loop, while loop, if statement
 * Composition and object orientation.
 
+## Operators
+* Additive: +
+* Subtraction: -
+* Multiplication: *
+* Exponential: **
+* Relational: <, >, >=, <=, ==, !=
+* Boolean: &, |
+* Floor: //
+* Modulo: %
+* Increment/Decrement: a++, a--
+* Warning: 🔥
+* Function: 🌶️
+
 ## Data Types:
 * Number: 4, 27.3, -13.0182
 * Boolean: true, false
