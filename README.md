@@ -16,7 +16,8 @@ Pycante is the world’s hottest programming language, taking inspiration from t
 * String Interpolation?
 * For loop, while loop, if statement
 * Composition and object orientation.
-
+* Dictionaries and object. (Dr. Toal advice)
+* Tuples vs Lists. 
 ## Operators
 * Additive: +
 * Subtraction: -
