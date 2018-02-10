@@ -23,7 +23,7 @@ Pycante {
   List = "[" (Number ("," Number)*) "]" 
        | "[" (String ("," String)*) "]"
        | "[" (Boolean ("," Boolean)*) "]" 
-       
+  Number = digit+
   String = "\"" string | "\'")* "\""
   keyword =  ("let" | "for" | "while" | "while"
               |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
@@ -34,6 +34,8 @@ Pycante {
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
   idrest =  "_" | alnum
-  Number = digit+
+  chars = ("a".."z") | ("A".."Z") 
+  special = space
+  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside 
   digit = "0..9"
 }
