@@ -13,11 +13,18 @@ Pycante {
   Loop = For | While
   Conditional = IF
   For = "for" "(" VarDec ","            -- need to figure this out 
-  While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block
-  IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
+  While = "while" "(" ((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
+  IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
   Class = "class" id Block
+  VarDec = "let" id "=" ((Number) | (Boolean) | (String) | (List))
   Return = "return" ((Exp)? | (id)?)
   FunDec = "fireemoji" id  "(" ( id ("," id)*) ")" "\n"
+  Boolean = "true" | "false"
+  List = "[" (Number ("," Number)*) "]" 
+       | "[" (String ("," String)*) "]"
+       | "[" (Boolean ("," Boolean)*) "]" 
+       
+  String = "\"" string | "\'")* "\""
   keyword =  ("let" | "for" | "while" | "while"
               |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
@@ -27,6 +34,6 @@ Pycante {
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
   idrest =  "_" | alnum
-  numlit = digit+
+  Number = digit+
   digit = "0..9"
 }
