@@ -1,0 +1,36 @@
+|-
+  Give this program all syntactic constructs of Pycante
+  in one file so that it can be matched against the
+  grammar to ensure the grammar is properly constructed.
+-|
+
+~ Variable declarations
+let x = 12
+let str = "Hello, world!"
+let bool = true;
+x--
+
+~ Function declaration
+🌶️ say()
+    console.hot(str)
+
+🌶️ add(x, y)
+    let z = x + y
+    return z
+
+~ Iteration
+for (let index = 0; index < 4; index++)
+    console.hot(index);
+
+while (x > 10)
+    console.hot(index);
+    x = add(x, -2);
+
+~ Conditionals
+if (bool)
+    bool = false
+else
+    bool = true
+
+~ Type Inference
+what(x)
