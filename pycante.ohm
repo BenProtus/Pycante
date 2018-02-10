@@ -1,5 +1,5 @@
 Pycante {
-  Program = Statement* 
+  Program = Statement*
   Statement = Exp
             | Loop  -- while, for
             | FunDec  -- Emoji
@@ -7,19 +7,19 @@ Pycante {
             | FunCall
             | Conditional -- if, else if, else
             | VarDec  -- it uses let
-            | Class      
+            | Class
             | Return
   Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
   Conditional = IF
-  For = "for" "(" VarDec ","            -- need to figure this out 
+  For = "for" "(" VarDec ","            -- need to figure this out
   While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block
   IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
   Class = "class" id Block
   Return = "return" ((Exp)? | (id)?)
   FunDec = "fireemoji" id  "(" ( id ("," id)*) ")" "\n"
   keyword =  ("let" | "for" | "while" | "while"
-              |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
+              |  "return" | "🌶️" | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
   space  := " "*
   addop   = "+" | "-"
