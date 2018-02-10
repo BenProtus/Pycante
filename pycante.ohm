@@ -18,7 +18,7 @@ Pycante {
   Class = "class" id Block
   VarDec = "let" id "=" ((Number) | (Boolean) | (String) | (List))
   Return = "return" ((Exp)? | (id)?)
-  FunDec = "fireemoji" id  "(" ( id ("," id)*) ")" "\n"
+  FunDec = "🌶️" id  "(" ( id ("," id)*) ")" "\n"
   Boolean = "true" | "false"
   List = "[" (Number ("," Number)*) "]" 
        | "[" (String ("," String)*) "]"
