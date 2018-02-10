@@ -12,23 +12,17 @@ Pycante {
   Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
   Conditional = IF
-<<<<<<< HEAD
-  For = "for" "(" VarDec ","            -- need to figure this out
-  While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block
-  IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
-=======
-  For = "for" "(" VarDec ","            -- need to figure this out 
+  For = "for" "(" VarDec ";" Exp ";" Exp ")" -- Check for accuracy
   While = "while" "(" ((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
   IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
->>>>>>> 83777d69f3ba47a605acf9b997104e02454ce7cc
   Class = "class" id Block
   VarDec = "let" id "=" ((Number) | (Boolean) | (String) | (List))
   Return = "return" ((Exp)? | (id)?)
   FunDec = "🌶️" id  "(" ( id ("," id)*) ")" "\n"
   Boolean = "true" | "false"
-  List = "[" (Number ("," Number)*) "]" 
+  List = "[" (Number ("," Number)*) "]"
        | "[" (String ("," String)*) "]"
-       | "[" (Boolean ("," Boolean)*) "]" 
+       | "[" (Boolean ("," Boolean)*) "]"
   Number = digit+
   String = "\"" string | "\'")* "\""
   keyword =  ("let" | "for" | "while" | "while"
@@ -40,8 +34,8 @@ Pycante {
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
   idrest =  "_" | alnum
-  chars = ("a".."z") | ("A".."Z") 
+  chars = ("a".."z") | ("A".."Z")
   special = space
-  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside 
+  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside
   digit = "0..9"
 }
