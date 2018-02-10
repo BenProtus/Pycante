@@ -3,19 +3,20 @@ Pycante {
   Statement = Exp
             | Loop  -- while, for
             | FunDec  -- Emoji
+            | Block
             | FunCall
             | Conditional -- if, else if, else
             | VarDec  -- it uses let
             | Class      
             | Return
-            
+  Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
   Conditional = IF
   For = "for" "(" VarDec ","            -- need to figure this out 
-  While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")"
-  IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")"  -- Block + else if (optional) + (else) Optional
-  Class = "class" id "\n" spaces ( (FunDec)? | (VarDec)? ) 
-  Return = "return" Exp?
+  While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block
+  IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
+  Class = "class" id Block
+  Return = "return" ((Exp)? | (id)?)
   FunDec = "fireemoji" id  "(" ( id ("," id)*) ")" "\n"
   keyword =  ("let" | "for" | "while" | "while"
               |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
@@ -27,4 +28,5 @@ Pycante {
   id = ~keyword letter idrest*
   idrest =  "_" | alnum
   numlit = digit+
+  digit = "0..9"
 }
