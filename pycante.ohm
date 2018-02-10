@@ -1,18 +1,21 @@
 Pycante {
   Program = Statement* 
-  Statement = Exp
-            | for 
-            | while
-            | funDec
-            | funCall
-            | if
-            | else if
-            | else
-            | let
-            | class     
-            | return
-       
-  space  := " "*
+  Statement = Declaration
+            | Loop  -- while, for
+            | FunDec  -- Emoji
+            | FunCall
+            | Conditional -- if, else if, else
+            | VarDec  -- it uses let
+            | Class      
+            | Return
   
+  Loop = "for" | "while"
+  
+  Exp = numlit+ op numlint+
+  op  =  
+  space  := " "*
+  newline = "\n"*
+  keyword     =  ("let" | "for" | "while" | "while"
+              |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
   numlit = digit+
 }
