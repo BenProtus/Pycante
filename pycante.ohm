@@ -1,0 +1,18 @@
+Pycante {
+  Program = Statement* 
+  Statement = Exp
+            | for 
+            | while
+            | funDec
+            | funCall
+            | if
+            | else if
+            | else
+            | let
+            | class     
+            | return
+       
+  space  := " "*
+  
+  numlit = digit+
+}
