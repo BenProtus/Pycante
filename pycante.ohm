@@ -1,21 +1,30 @@
 Pycante {
-  Program = Statement*
-  Statement = Declaration
+  Program = Statement* 
+  Statement = Exp
             | Loop  -- while, for
             | FunDec  -- Emoji
             | FunCall
             | Conditional -- if, else if, else
             | VarDec  -- it uses let
-            | Class
+            | Class      
             | Return
-
-  Loop = "for" | "while"
-
-  Exp = numlit+ op numlint+
-  op  =
+            
+  Loop = For | While
+  Conditional = IF
+  For = "for" "(" VarDec ","            -- need to figure this out 
+  While = "while" "(" ((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")"
+  IF = "if" "("((numlit) | (id) | (Exp)) relop ((numlit) | (id) | (Exp)) ")"  -- Block + else if (optional) + (else) Optional
+  Class = "class" id "\n" spaces ( (FunDec)? | (VarDec)? ) 
+  Return = "return" Exp?
+  FunDec = "fireemoji" id  "(" ( id ("," id)*) ")" "\n"
+  keyword =  ("let" | "for" | "while" | "while"
+              |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
+  Types  =  "Boolean" | "Number" | "String" |
   space  := " "*
-  newline = "\n"*
-  keyword     =  ("let" | "for" | "while" | "while"
-              |  "return" | 🔥 | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
+  addop   = "+" | "-"
+  mulop   = "*"| "%" | "/"
+  relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
+  id = ~keyword letter idrest*
+  idrest =  "_" | alnum
   numlit = digit+
 }
