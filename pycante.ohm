@@ -53,7 +53,7 @@ Pycante {
               |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
   space  := " "
-  print: "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) | (FunCall) ")"
+  print =  "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) | (FunCall) ")"
   addop   = "+" | "-"
   pluspluaop = "++"
   decrementop = "--"
