@@ -24,13 +24,15 @@ Pycante {
         | (pluspluaop? (id))
         | ((id) pluspluaop?)
         | ((id) decrement?)
+        | (decrement? (id))
         | "(" Exp ")"
         
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
+  Assignment = id "=" Exp
   Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
   Conditional = IF
-  For = "for" "(" VarDec ","            -- need to figure this out 
+  For = "for" "(" VarDec ";" Exp relop Exp ";" ((Assignment) | (Exp)) ")"         
   While = "while" "(" ((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
   IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block  -- Block + else if (optional) + (else) Optional
   Class = "class" id Block
@@ -58,6 +60,6 @@ Pycante {
   idrest =  "_" | alnum
   chars = ("a".."z") | ("A".."Z") 
   special = space
-  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside 
+  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside a string. 
   digit = "0..9"
 }
