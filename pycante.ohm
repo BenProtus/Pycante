@@ -5,7 +5,6 @@ Pycante {
             | FunDec  
             | Block
             | Assignment
-            | FunCall
             | Conditional
             | VarDec  
             | Class      
@@ -20,8 +19,7 @@ Pycante {
        | Exp4 
   Exp4 = Exp4 booleanp Exp5
        | Exp5
-  Exp5 = Boolean booleanp 
-        | (pluspluaop? (id))
+  Exp5 = (pluspluaop? (id))
         | ((id) pluspluaop?)
         | ((id) decrement?)
         | (decrement? (id))       
@@ -31,13 +29,13 @@ Pycante {
         
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
   Assignment = id "=" Exp
-  Block = newline "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall) | (Assignment) | (TypeInference) | (print))
+  Block = newline "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (Assignment) | (TypeInference) | (print))
   Loop = For | While
   Conditional = IF
   For = "for" "(" VarDec ";" Exp relop Exp ";" ((Assignment) | (Exp)) ")"  Block       
   While = "while" "(" ((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
   IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block 
-  Class = "class" id Block
+  Class = "class" space+ id Block
   VarDec = "let" id "=" ((Number) | (Boolean) | (String) | (List))
   Return = "return" ((Exp)? | (id)? | (Types))
   FunDec = fire space+ id  "(" ( id ("," id)*) ")" Block Return
@@ -53,12 +51,12 @@ Pycante {
               |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
   space  := " "
-  print =  "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) | (FunCall) ")"
+  print =  "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) ")"
   addop   = "+" | "-"
   pluspluaop = "++"
   decrementop = "--"
   negate = "-"
-  booleanp[ = "&" |  "|"
+  booleanp = "&" |  "|"
   mulop   = "*"| "%" | "/"
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
