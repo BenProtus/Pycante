@@ -13,7 +13,7 @@ Pycante {
             | Return
   Exp = id  
   Assignment = (id "=" Exp) | (id "=" " ")
-  TypeInference = "what" space? "("(Exp)| (id) | (Type) ")"
+  TypeInference = "what" "("(Exp)| (id) | (Type) ")"
   Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
   Conditional = IF
