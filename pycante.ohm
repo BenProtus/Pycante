@@ -11,8 +11,21 @@ Pycante {
             | VarDec  -- it uses let
             | Class      
             | Return
-  Exp = id  
-  Assignment = (id "=" Exp) | (id "=" " ")
+  Exp = Exp mulop Exp1
+       | Exp1
+  Exp1 = Exp1 addop Exp2
+       | Exp2
+  Exp2 = Exp2 "**" Exp3
+       | Exp3
+  Exp3 = Exp3 relop Exp4
+       | Exp4 
+  Exp4 = ((pluspluaop)? Number )
+        | Boolean
+        | (pluspluaop? (id))
+        | ((id) pluspluaop?)
+        | ((id) decrement?)
+        | "(" Exp ")"
+        
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
   Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall))
   Loop = For | While
@@ -30,13 +43,15 @@ Pycante {
        | "[" (Boolean ("," Boolean)*) "]" 
   Number = digit+
   String = "\"" string | "\'")* "\""
-  StringConcat = (String concat String)+
+  StringConcat = (String space+ pluspluaop space+ String)+
   keyword =  ("let" | "for" | "while" | "while"
-              |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" || "true" | "false") ~idrest
+              |  "return" | fireemoji | "if" | "else" | "else if" | "what"| "console.hot" | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
   space  := " "
   addop   = "+" | "-"
-  concat  = "++"
+  pluspluaop = "++"
+  decrementop = "--"
+  negate = "-"
   mulop   = "*"| "%" | "/"
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
