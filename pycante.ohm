@@ -31,7 +31,7 @@ Pycante {
         
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
   Assignment = id "=" Exp
-  Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall) | (Assignment) | (TypeInference) | (print))
+  Block = newline "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall) | (Assignment) | (TypeInference) | (print))
   Loop = For | While
   Conditional = IF
   For = "for" "(" VarDec ";" Exp relop Exp ";" ((Assignment) | (Exp)) ")"  Block       
@@ -62,6 +62,7 @@ Pycante {
   mulop   = "*"| "%" | "/"
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
+  newline= "\n"+
   idrest =  "_" | alnum
   chars = ("a".."z") | ("A".."Z") 
   special = space
