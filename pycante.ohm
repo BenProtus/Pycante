@@ -19,12 +19,12 @@ Pycante {
        | Exp3
   Exp3 = Exp3 relop Exp4
        | Exp4 
-  Exp4 = ((pluspluaop)? Number )
-        | Boolean
+  Exp4 = Boolean
         | (pluspluaop? (id))
         | ((id) pluspluaop?)
         | ((id) decrement?)
-        | (decrement? (id))
+        | (decrement? (id))       
+        | (negate id)
         | "(" Exp ")"
         
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
@@ -43,7 +43,7 @@ Pycante {
   List = "[" (Number ("," Number)*) "]" 
        | "[" (String ("," String)*) "]"
        | "[" (Boolean ("," Boolean)*) "]" 
-  Number = digit+
+  Number = digit+ | negate?(digit+ )
   String = "\"" string | "\'")* "\""
   StringConcat = (String space+ pluspluaop space+ String)+
   keyword =  ("let" | "for" | "while" | "while"
