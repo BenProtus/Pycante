@@ -6,7 +6,6 @@ Pycante {
             | Block
             | Assignment
             | FunCall
-            | TypeInference
             | Conditional -- if, else if, else
             | VarDec  -- it uses let
             | Class      
@@ -19,12 +18,15 @@ Pycante {
        | Exp3
   Exp3 = Exp3 relop Exp4
        | Exp4 
-  Exp4 = Boolean
+  Exp4 = Exp4 booleanp Exp5
+       | Exp5
+  Exp5 = Boolean booleanp 
         | (pluspluaop? (id))
         | ((id) pluspluaop?)
         | ((id) decrement?)
         | (decrement? (id))       
         | (negate id)
+        | TypeInference
         | "(" Exp ")"
         
   TypeInference = "what" "("(Exp)| (id) | (Type) ")"
@@ -51,11 +53,12 @@ Pycante {
               |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
   space  := " "
-  print: "console.hot" "(" (Exp) | (Type) | (id)
+  print: "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) | (FunCall) ")"
   addop   = "+" | "-"
   pluspluaop = "++"
   decrementop = "--"
   negate = "-"
+  booleanp[ = "&" |  "|"
   mulop   = "*"| "%" | "/"
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword letter idrest*
