@@ -19,7 +19,7 @@ Pycante {
        | Exp4 
   Exp4 = Exp4 booleanp Exp5
        | Exp5
-  Exp5 = TypeInference
+  Exp5 = pluspluaop Exp5
         | "(" Exp ")"
         
   TypeInference = "what" "(" Exp | id | Types ")"
@@ -27,7 +27,7 @@ Pycante {
   Block = newline "\t" (VarDec | Exp | Loop | Conditional | Assignment | TypeInference | print )
   Loop = For | While
   Conditional = IF
-  For = "for" "(" VarDec ";" Exp relop Exp ";" ((Assignment) | (Exp)) ")"  Block       
+  For = "for" "(" VarDec ";" Exp relop Exp ";" Exp ")"  Block       
   While = "while" "(" Number | id |  Exp  relop  Number | id | Exp ")" Block
   IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block 
   Class = "class" space+ id Block
@@ -40,11 +40,11 @@ Pycante {
        | "[" (String ("," String)*) "]"
        | "[" (Boolean ("," Boolean)*) "]" 
   Number = digit+
-  String = "\"" string | "\'")* "\""
   StringConcat = (String space+ pluspluaop space+ String)+
   keyword =  ("let" | "for" | "while" | "while"
               |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
+  String = "\"" string | "\'")* "\""
   space  := " "
   print =  "console.hot" "(" Exp | Types | id | TypeInference ")"
   addop   = "+" | "-"
