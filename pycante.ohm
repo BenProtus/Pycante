@@ -1,0 +1,70 @@
+Pycante {
+  Program = Statement* 
+  Statement = Exp
+            | Loop  -- while, for
+            | FunDec  -- Emoji
+            | Block
+            | Assignment
+            | FunCall
+            | Conditional -- if, else if, else
+            | VarDec  -- it uses let
+            | Class      
+            | Return
+  Exp = Exp mulop Exp1
+       | Exp1
+  Exp1 = Exp1 addop Exp2
+       | Exp2
+  Exp2 = Exp2 "**" Exp3
+       | Exp3
+  Exp3 = Exp3 relop Exp4
+       | Exp4 
+  Exp4 = Exp4 booleanp Exp5
+       | Exp5
+  Exp5 = Boolean booleanp 
+        | (pluspluaop? (id))
+        | ((id) pluspluaop?)
+        | ((id) decrement?)
+        | (decrement? (id))       
+        | (negate id)
+        | TypeInference
+        | "(" Exp ")"
+        
+  TypeInference = "what" "("(Exp)| (id) | (Type) ")"
+  Assignment = id "=" Exp
+  Block = "\n" "\t" ( (VarDec) | (Exp) | (Loop) | (Conditional) | (FunCall) | (Assignment) | (TypeInference) | (print))
+  Loop = For | While
+  Conditional = IF
+  For = "for" "(" VarDec ";" Exp relop Exp ";" ((Assignment) | (Exp)) ")"  Block       
+  While = "while" "(" ((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
+  IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block 
+  Class = "class" id Block
+  VarDec = "let" id "=" ((Number) | (Boolean) | (String) | (List))
+  Return = "return" ((Exp)? | (id)? | (Types))
+  FunDec = fire space+ id  "(" ( id ("," id)*) ")" Block Return
+  Boolean = "true" | "false"
+  hotpepper = "🌶️"
+  List = "[" (Number ("," Number)*) "]" 
+       | "[" (String ("," String)*) "]"
+       | "[" (Boolean ("," Boolean)*) "]" 
+  Number = digit+ | negate?(digit+ )
+  String = "\"" string | "\'")* "\""
+  StringConcat = (String space+ pluspluaop space+ String)+
+  keyword =  ("let" | "for" | "while" | "while"
+              |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
+  Types  =  "Boolean" | "Number" | "String" |
+  space  := " "
+  print: "console.hot" "(" (Exp) | (Type) | (id) | (TypeInference) | (FunCall) ")"
+  addop   = "+" | "-"
+  pluspluaop = "++"
+  decrementop = "--"
+  negate = "-"
+  booleanp[ = "&" |  "|"
+  mulop   = "*"| "%" | "/"
+  relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
+  id = ~keyword letter idrest*
+  idrest =  "_" | alnum
+  chars = ("a".."z") | ("A".."Z") 
+  special = space
+  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside a string. 
+  digit = "0..9"
+}
