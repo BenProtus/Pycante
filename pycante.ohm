@@ -1,13 +1,13 @@
 Pycante {
   Program = Statement* 
   Statement = Exp
-            | Loop  -- while, for
-            | FunDec  -- Emoji
+            | Loop  
+            | FunDec  
             | Block
             | Assignment
             | FunCall
-            | Conditional -- if, else if, else
-            | VarDec  -- it uses let
+            | Conditional
+            | VarDec  
             | Class      
             | Return
   Exp = Exp mulop Exp1
@@ -66,6 +66,6 @@ Pycante {
   idrest =  "_" | alnum
   chars = ("a".."z") | ("A".."Z") 
   special = space
-  string = (digit) | (chars) | (special)  -- We need to figure out how to capture special characters like ">, <,@, # []" inside a string. 
+  string = (digit) | (chars) | (special) 
   digit = "0..9"
 }
