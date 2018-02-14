@@ -1,0 +1,11 @@
+let add = 10 + 12 
+
+let  mult = 12 * 12 
+
+let sub = 20 - 50 
+
+let pow = 12 ** 2
+
+let divide = 12 / 12
+ 
+

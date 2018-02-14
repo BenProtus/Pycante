@@ -1,0 +1,9 @@
+while (x >10)
+    let id = 60
+    if (id < 6)
+        ++id
+
+
+for (let i = 10 ; i<10 ; ++i)
+    if (20 < 10)
+        ~Do something

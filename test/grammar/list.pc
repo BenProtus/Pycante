@@ -1,0 +1,13 @@
+let x = [12,12]
+
+let  y = [true, false, true]
+
+
+let z = ["A", "B", "C"]
+
+
+ [12, 12 , 65]  ~ This is helpful when calling a function. Specifically, when you pass a list to a function.
+
+
+
+

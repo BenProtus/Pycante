@@ -1,14 +1,14 @@
 Pycante {
   Program = Statement*
   Statement = Exp
-            | Loop
-            | FunDec
-            | Block
-            | Assignment
-            | Conditional
             | VarDec
-            | Class
-            | Return
+            | numberLiteral
+            | boolLiteral
+            | stringLiteral
+
+  VarDec = "let" id "=" Exp
+  Types  =  "Boolean" | "Number" | "String"
+
   Exp = Exp mulop Exp1    -- binary
        | Exp1
   Exp1 = Exp1 addop Exp2    -- binary
@@ -19,46 +19,53 @@ Pycante {
        | Exp4
   Exp4 = Exp4 booleanp Exp5    -- binary
        | Exp5
-  Exp5 = pluspluaop Exp5    -- binary
+  Exp5 = plusplus Exp    -- binary
+        | Exp6
+  Exp6   = numberLiteral
+        | stringLiteral
+        | boolLiteral
+        | id
+        | FunCall
+        | Loop
+        | Conditional
+        | FunDeclaration
+        | List
+        | TypeInference
         | "(" Exp ")"        -- parens
 
-  TypeInference = "what" "(" Exp | id | Types ")"
-  Assignment = id "=" Exp
-  Block = newline "\t" (VarDec | Exp | Loop | Conditional | Assignment | TypeInference | print )
-  Loop = For | While
-  Conditional = IF
-  For = "for" "(" VarDec ";" Exp relop Exp ";" Exp ")"  Block
-  While = "while" "(" Number | id |  Exp  relop  Number | id | Exp ")" Block
-  IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
-  Class = "class" space+ id Block
-  VarDec = "let" id "=" Types
-  Return = "return" ((Exp)? | (id)? | (Types)? )
-  FunDec = hotpepper space+ id  "(" ( id ("," id)*) ")" Block Return
-  Boolean = "true" | "false"
-  hotpepper = "🌶️"
-  List = "[" (Number ("," Number)*) "]"
-       | "[" (String ("," String)*) "]"
-       | "[" (Boolean ("," Boolean)*) "]"
-  Number = digit+
-  StringConcat = (String space+ pluspluaop space+ String)+
-  keyword =  ("let" | "for" | "while" | "while"
-              |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
-  Types  =  "Boolean" | "Number" | "String" |
-  String = "\"" (string | "\'")* "\""
-  space  := " "
-  print =  "console.hot" "(" Exp | Types | id | TypeInference ")"
-  addop   = "+" | "-"
-  pluspluaop = "++"
-  decrementop = "--"
-  negate = "-"
-  booleanp = "&" |  "|"
-  mulop   = "*"| "%" | "/"
-  relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
-  id = ~keyword chars idrest*
-  newline = "\n"+
+keyword =  ("let" | "for" | "while" | "while" |  "return"  | "if" | "what" | "else" | "else if" | "what" | "true" | "false") ~idrest
+FunCall = id "(" (Exp ("," Exp)* )?")"
+FunDeclaration = "🌶" id "(" (id ("," id)*)? ")" Statement* Return
 
-  idrest =  "_" | chars
-  chars = "a".."z" | "A".."Z"
-  special = space
-  string = digit+ | chars+
+
+Return = "return"? Exp?
+TypeInference = "what" "(" Exp ")"
+
+List = "[" ListOf<numberLiteral, ","> "]"
+      | "[" ListOf<stringLiteral, ","> "]"
+      | "[" ListOf<boolLiteral, ","> "]"
+Conditional = IF
+Loop = For | While
+
+For = "for" "(" VarDec ";" Exp ";" Exp ")"
+While = "while" "(" Exp ")"
+IF = "if" "(" Exp ")" Statement* "else"? Statement*
+
+addop   = "+" | "-"
+numberLiteral = digit+
+stringLiteral = "\"" (~"\""any)* "\""
+booleanp = "&" |  "|"
+mulop   = "*"| "%" | "/"
+relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
+plusplus = "++"
+boolLiteral = "false" | "true"
+decrement = "--"
+id = ~keyword ("_" | lower) idrest*
+idrest =  "_" | alnum
+newline     =  "\n"+
+space      :=  " " | "\t" | "\n" | comment
+comment     = "~" (~"\n" any)*  -- comment
+            | multiLineComment
+multiLineComment   = "|-" (~"-|" any)* "-|"
+
 }

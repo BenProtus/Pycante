@@ -1,0 +1,7 @@
+🌶 add(a)
+    return a + 10
+
+🌶 mult(a,b)
+    return b*a
+
+

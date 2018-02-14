@@ -1,36 +1,14 @@
-|-
-  Give this program all syntactic constructs of Pycante
-  in one file so that it can be matched against the
-  grammar to ensure the grammar is properly constructed.
--|
+let xxx = 12
 
-~ Variable declarations
-let x = 12
-let str = "Hello, world!"
-let bool = true;
-x--
+let y = 10 
 
-~ Function declaration
-🌶️ say()
-    console.hot(str)
+let z = 12 
 
-🌶️ add(x, y)
-    let z = x + y
-    return z
+let str = "Hello"
 
-~ Iteration
-for (let index = 0; index < 4; index++)
-    console.hot(index);
+let isTrue = true 
 
-while (x > 10)
-    console.hot(index);
-    x = add(x, -2);
+let isFalse = false 
 
-~ Conditionals
-if (bool)
-    bool = false
-else
-    bool = true
+let divide = 12 / 12
 
-~ Type Inference
-what(x)
