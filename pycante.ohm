@@ -1,50 +1,50 @@
 Pycante {
-  Program = Statement* 
+  Program = Statement*
   Statement = Exp
-            | Loop  
-            | FunDec  
+            | Loop
+            | FunDec
             | Block
             | Assignment
             | Conditional
-            | VarDec  
-            | Class      
+            | VarDec
+            | Class
             | Return
-  Exp = Exp mulop Exp1
+  Exp = Exp mulop Exp1    -- binary
        | Exp1
-  Exp1 = Exp1 addop Exp2
+  Exp1 = Exp1 addop Exp2    -- binary
        | Exp2
-  Exp2 = Exp2 "**" Exp3
+  Exp2 = Exp2 "**" Exp3    -- binary
        | Exp3
-  Exp3 = Exp3 relop Exp4
-       | Exp4 
-  Exp4 = Exp4 booleanp Exp5
+  Exp3 = Exp3 relop Exp4    -- binary
+       | Exp4
+  Exp4 = Exp4 booleanp Exp5    -- binary
        | Exp5
-  Exp5 = pluspluaop Exp5
-        | "(" Exp ")"
-        
+  Exp5 = pluspluaop Exp5    -- binary
+        | "(" Exp ")"        -- parens
+
   TypeInference = "what" "(" Exp | id | Types ")"
   Assignment = id "=" Exp
   Block = newline "\t" (VarDec | Exp | Loop | Conditional | Assignment | TypeInference | print )
   Loop = For | While
   Conditional = IF
-  For = "for" "(" VarDec ";" Exp relop Exp ";" Exp ")"  Block       
+  For = "for" "(" VarDec ";" Exp relop Exp ";" Exp ")"  Block
   While = "while" "(" Number | id |  Exp  relop  Number | id | Exp ")" Block
-  IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block 
+  IF = "if" "("((Number) | (id) | (Exp)) relop ((Number) | (id) | (Exp)) ")" Block
   Class = "class" space+ id Block
   VarDec = "let" id "=" Types
   Return = "return" ((Exp)? | (id)? | (Types)? )
   FunDec = hotpepper space+ id  "(" ( id ("," id)*) ")" Block Return
   Boolean = "true" | "false"
   hotpepper = "🌶️"
-  List = "[" (Number ("," Number)*) "]" 
+  List = "[" (Number ("," Number)*) "]"
        | "[" (String ("," String)*) "]"
-       | "[" (Boolean ("," Boolean)*) "]" 
+       | "[" (Boolean ("," Boolean)*) "]"
   Number = digit+
   StringConcat = (String space+ pluspluaop space+ String)+
   keyword =  ("let" | "for" | "while" | "while"
               |  "return" | hotpepper | "if" | "else" | "else if" | "what"| print | "true" | "false") ~idrest
   Types  =  "Boolean" | "Number" | "String" |
-  String = "\"" string | "\'")* "\""
+  String = "\"" (string | "\'")* "\""
   space  := " "
   print =  "console.hot" "(" Exp | Types | id | TypeInference ")"
   addop   = "+" | "-"
@@ -56,10 +56,9 @@ Pycante {
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
   id = ~keyword chars idrest*
   newline = "\n"+
- 
+
   idrest =  "_" | chars
-  chars = "a".."z" | "A".."Z" 
+  chars = "a".."z" | "A".."Z"
   special = space
   string = digit+ | chars+
-  digit = "0..9"
 }
