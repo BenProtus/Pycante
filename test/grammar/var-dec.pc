@@ -1,0 +1,14 @@
+let xxx = 12
+
+let y = 10 
+
+let z = 12 
+
+let str = "Hello"
+
+let isTrue = true 
+
+let isFalse = false 
+
+let divide = 12 / 12
+

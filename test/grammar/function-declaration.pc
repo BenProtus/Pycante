@@ -5,3 +5,7 @@
     return b*a
 
 
+🌶 average (x)
+    let result = 50/x
+    return result
+

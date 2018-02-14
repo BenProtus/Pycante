@@ -6,8 +6,7 @@ Pycante {
             | boolLiteral
             | stringLiteral
 
-  VarDec = "let" id "=" Exp
-  Types  =  "Boolean" | "Number" | "String"
+
 
   Exp = Exp mulop Exp1    -- binary
        | Exp1
@@ -29,17 +28,21 @@ Pycante {
         | Loop
         | Conditional
         | FunDeclaration
+        | Assignment
         | List
         | TypeInference
         | "(" Exp ")"        -- parens
 
+VarDec = "let" id "=" Exp
+
+Types  =  "Boolean" | "Number" | "String"
 keyword =  ("let" | "for" | "while" | "while" |  "return"  | "if" | "what" | "else" | "else if" | "what" | "true" | "false") ~idrest
 FunCall = id "(" (Exp ("," Exp)* )?")"
 FunDeclaration = "🌶" id "(" (id ("," id)*)? ")" Statement* Return
-
-
+Assignment = id ass Exp
+Class = "class" id newline VarDec* FunDeclaration*
 Return = "return"? Exp?
-TypeInference = "what" "(" Exp ")"
+TypeInference = "what"  Exp 
 
 List = "[" ListOf<numberLiteral, ","> "]"
       | "[" ListOf<stringLiteral, ","> "]"
@@ -48,8 +51,8 @@ Conditional = IF
 Loop = For | While
 
 For = "for" "(" VarDec ";" Exp ";" Exp ")"
-While = "while" "(" Exp ")"
-IF = "if" "(" Exp ")" Statement* "else"? Statement*
+While = "while" Exp
+IF = "if"  Exp  Statement* "else"? Statement*
 
 addop   = "+" | "-"
 numberLiteral = digit+
@@ -62,6 +65,7 @@ boolLiteral = "false" | "true"
 decrement = "--"
 id = ~keyword ("_" | lower) idrest*
 idrest =  "_" | alnum
+ass = "="
 newline     =  "\n"+
 space      :=  " " | "\t" | "\n" | comment
 comment     = "~" (~"\n" any)*  -- comment

@@ -1,0 +1,4 @@
+return 10
+
+if (ifValid == true)
+    return true
