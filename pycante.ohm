@@ -1,71 +1,80 @@
 Pycante {
-  Program = Statement*
-  Statement = Exp | VarDec
+  Program   = Statement*
+  Statement = Exp
+            | VarDec
+            | FunDeclaration
+            | Assignment
+            | Loop
+            | Conditional
+            | PrintStatement
 
+  VarDec = "let" id "=" Exp
+  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
+  Param = id ":" Type
 
-
-  Exp = Exp mulop Exp1    -- binary
+  Exp  = Exp "or" Exp1       -- binary
        | Exp1
-  Exp1 = Exp1 addop Exp2    -- binary
+  Exp1 = Exp1 "and" Exp2     -- binary
        | Exp2
-  Exp2 = Exp2 "**" Exp3    -- binary
+  Exp2 = Exp3 relop Exp3     -- binary
        | Exp3
-  Exp3 = Exp3 relop Exp4    -- binary
+  Exp3 = Exp3 mulop Exp4     -- binary
        | Exp4
-  Exp4 = Exp4 booleanp Exp5    -- binary
+  Exp4 = Exp4 addop Exp5     -- binary
        | Exp5
-  Exp5 = plusplus Exp    -- binary
-        | Exp6
-  Exp6   = numberLiteral
-        | stringLiteral
-        | boolLiteral
-        | id
-        | FunCall
-        | Loop
-        | Conditional
-        | FunDeclaration
-        | Assignment
-        | List
-        | TypeInference
-        | "(" Exp ")"        -- parens
+  Exp5 = Exp6 "**" Exp5      -- binary
+       | Exp6
+  Exp6 = plusplus Exp7       -- inc
+       | decrement Exp7      -- dec
+       | Exp7
+  Exp7 = numberLiteral
+       | stringLiteral
+       | boolLiteral
+       | id
+       | FunCall
+       | List
+       | WhatExp
+       | "(" Exp ")"         -- parens
+       | Exp7 "." FunCall    -- methodCall
 
-VarDec = "let" id "=" Exp
+  Type  =  "Boolean" | "Number" | "String"
 
-Types  =  "Boolean" | "Number" | "String"
-keyword =  ("let" | "for" | "while" | "while" |  "return"  | "if" | "what" | "else" | "else if" | "what" | "true" | "false") ~idrest
-FunCall = id "(" (Exp ("," Exp)* )?")"
-FunDeclaration = "🌶" id "(" (id ("," id)*)? ")" Statement* Return
-Assignment = id ass Exp
-Class = "class" id newline VarDec* FunDeclaration*
-Return = "return"? Exp?
-TypeInference = "what"  Exp
+  keyword =  ("let" | "for" | "while" | "while" |  "return"  | "if" | "else" | "else if" | "what" | "true" | "false") ~idrest
 
-List = "[" ListOf<numberLiteral, ","> "]"
-      | "[" ListOf<stringLiteral, ","> "]"
-      | "[" ListOf<boolLiteral, ","> "]"
-Conditional = IF
-Loop = For | While
+  FunCall = id "(" (Exp ("," Exp)* )?")"
+  Assignment = id "=" Exp
+  Class = "♨️" id newline VarDec* FunDeclaration* "end"
 
-For = "for" "(" VarDec ";" Exp ";" Exp ")"
-While = "while" Exp
-IF = "if"  Exp  Statement* "else"? Statement*
+  Return = "return" Exp         -- returnExpression
+         | "return"             -- returnNothing
+         | Exp                  -- implicitReturnExpression
+  WhatExp = "what"  Exp
+  List = "[" ListOf<Exp, ","> "]"
 
-addop   = "+" | "-"
-numberLiteral = digit+
-stringLiteral = "\"" (~"\""any)* "\""
-booleanp = "&" |  "|"
-mulop   = "*"| "%" | "/"
-relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
-plusplus = "++"
-boolLiteral = "false" | "true"
-decrement = "--"
-id = ~keyword ("_" | lower) idrest*
-idrest =  "_" | alnum
-ass = "="
-newline     =  "\n"+
-space      :=  " " | "\t" | "\n" | comment
-comment     = "~" (~"\n" any)*  -- comment
-            | multiLineComment
-multiLineComment   = "|-" (~"-|" any)* "-|"
+  Conditional = IfStatement
+  Loop = ForStatement | WhileStatement
 
+  ForStatement = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
+  WhileStatement = "while" Exp Statement* "end"
+  IfStatement = "if" Exp  Statement* ("else" Statement*)? "end"
+  PrintStatement = "🔥" ":" Exp
+
+  numberLiteral = digit+
+  stringLiteral = "\"" (~"\""any)* "\""
+  boolLiteral = "false" | "true"
+
+  addop   = "+" | "-"
+  mulop   = "*"| "%" | "/"
+  relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
+  plusplus = "++"
+  decrement = "--"
+
+  id = ~keyword ("_" | lower) idrest*
+  idrest =  "_" | alnum
+
+  newline     =  "\n"+
+  space      :=  " " | "\t" | "\n" | comment
+  comment     = "~" (~"\n" any)*  -- comment
+              | multiLineComment
+  multiLineComment   = "|-" (~"-|" any)* "-|"
 }

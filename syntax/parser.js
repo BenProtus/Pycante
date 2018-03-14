@@ -9,4 +9,4 @@ module.exports = (text) => {
     throw new Error(`Syntax Error: ${match.message}`);
   }
   return true;
-}
+};
