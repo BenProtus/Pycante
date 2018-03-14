@@ -161,21 +161,20 @@ let something
 what(something)
     🔥: 'something' does not have a type
 ```
+
 Example of Pycante Dictionaries
 
 ```
-webster =
-    "aardvark": 1,
+webster = "aardvark": 1,
     "acapella": 27,
     "pycante": 469,
-    "spice": 763,
+    "spice": 763.
 ```
 
 Example of Pycante Classes
 
 ```
 ♨️ Pepper:
-
-    🌶️f(self):
+    🌶️ f(self)
         return 'spice is nice'
 ```
