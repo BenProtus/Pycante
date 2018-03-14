@@ -1,10 +1,6 @@
 Pycante {
   Program = Statement*
-  Statement = Exp
-            | VarDec
-            | numberLiteral
-            | boolLiteral
-            | stringLiteral
+  Statement = Exp | VarDec
 
 
 
@@ -42,7 +38,7 @@ FunDeclaration = "🌶" id "(" (id ("," id)*)? ")" Statement* Return
 Assignment = id ass Exp
 Class = "class" id newline VarDec* FunDeclaration*
 Return = "return"? Exp?
-TypeInference = "what"  Exp 
+TypeInference = "what"  Exp
 
 List = "[" ListOf<numberLiteral, ","> "]"
       | "[" ListOf<stringLiteral, ","> "]"
