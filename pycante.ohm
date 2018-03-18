@@ -60,7 +60,7 @@ Pycante {
 
   ForStatement = "for" "(" VarDec ";" Exp ";" Exp ")" Statement*
   WhileStatement = "while" Exp Statement*
-  IfStatement = "if" Exp  Statement* ("else" Statement*)?
+  IfStatement = "if" Exp Statement* ("else if" Exp Statement*)? ("else" Statement*)?
   PrintStatement = "🔥" ":" Exp
 
   numberLiteral = digit+
