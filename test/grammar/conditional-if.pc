@@ -3,12 +3,9 @@ if (10 > 8)
     if (20 == 20)
         let y = 20
         let x = "Hello"
-        else
-        	let v = 50
+    else
+        let v = 50
     end
 else
-	let str = "String"
+    let str = "String"
 end
-
-
-
