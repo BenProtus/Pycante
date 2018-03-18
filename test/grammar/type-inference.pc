@@ -1,8 +1,8 @@
-what (12)
+let x = what (12)
 
 
-what (true)
+x = what (true)
 
-what((12+2))
+x = what((12+2))
 
-what ((128127 % 12)/12)
+x = what ((128127 % 12)/12)

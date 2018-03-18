@@ -6,8 +6,9 @@ let  y = [true, false, true]
 let z = ["A", "B", "C"]
 
 
- [12, 12 , 65]  ~ This is helpful when calling a function. Specifically, when you pass a list to a function.
+🌶 first (a: Number) ~ This has to be list eventually
+    return ~ eventually you have to handle "return a[0]"
+end
 
 
-
-
+first([12, 12, 65])
