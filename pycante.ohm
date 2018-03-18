@@ -2,14 +2,18 @@ Pycante {
   Program   = Statement*
   Statement = Exp
             | VarDec
-            | FunDeclaration
+            | Declaration
             | Assignment
-            | Loop
-            | Conditional
             | PrintStatement
 
+  Declaration  = Declaration1 "end"
+  Declaration1 = FunDeclaration
+               | Loop
+               | Conditional
+               | Class
+
   VarDec = "let" id "=" Exp
-  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
+  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return
   Param = id ":" Type
 
   Exp  = Exp "or" Exp1       -- binary
@@ -43,7 +47,7 @@ Pycante {
 
   FunCall = id "(" (Exp ("," Exp)* )?")"
   Assignment = id "=" Exp
-  Class = "♨️" id newline VarDec* FunDeclaration* "end"
+  Class = "♨️" id newline VarDec* FunDeclaration*
 
   Return = "return" Exp         -- returnExpression
          | "return"             -- returnNothing
@@ -54,9 +58,9 @@ Pycante {
   Conditional = IfStatement
   Loop = ForStatement | WhileStatement
 
-  ForStatement = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
-  WhileStatement = "while" Exp Statement* "end"
-  IfStatement = "if" Exp  Statement* ("else" Statement*)? "end"
+  ForStatement = "for" "(" VarDec ";" Exp ";" Exp ")" Statement*
+  WhileStatement = "while" Exp Statement*
+  IfStatement = "if" Exp  Statement* ("else" Statement*)?
   PrintStatement = "🔥" ":" Exp
 
   numberLiteral = digit+
