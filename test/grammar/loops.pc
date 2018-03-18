@@ -1,13 +1,13 @@
-while (x >10)
+while x > 10
     let id = 60
-    if (id < 6)
+    if id < 6
         ++id
+    end
+end
 
 
-for (let i = 10 ; i<10 ; ++i)
-    if (20 < 10)
-        ~Do something
-
-let y = 10 
-
-
+for (let i = 10; i < 10; ++i)
+    if 20 < 10
+        ++i
+    end
+end

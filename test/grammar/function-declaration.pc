@@ -1,11 +1,14 @@
-🌶 add(a)
+🌶 add (a: Number)
     return a + 10
+end
 
-🌶 mult(a,b)
+🌶 mult (a: Number, b: Number)
     return b*a
+end
 
 
-🌶 average (x)
+🌶 average (x: Number)
     let result = 50/x
     return result
+end
 
