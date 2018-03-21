@@ -6,10 +6,10 @@ Pycante {
               | FunCall
               | Declaration
               | PrintStatement
-  Declaration = VarDec
-              | FunDeclaration
               | Loop
               | Conditional
+  Declaration = VarDec
+              | FunDeclaration
               | Class
 
   VarDec = "let" id "=" Exp
@@ -22,9 +22,9 @@ Pycante {
        | Exp2
   Exp2 = Exp3 relop Exp3     -- binary
        | Exp3
-  Exp3 = Exp3 mulop Exp4     -- binary
+  Exp3 = Exp3 addop Exp4     -- binary
        | Exp4
-  Exp4 = Exp4 addop Exp5     -- binary
+  Exp4 = Exp4 mulop Exp5     -- binary
        | Exp5
   Exp5 = Exp6 "**" Exp5      -- binary
        | Exp6

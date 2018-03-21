@@ -1,0 +1,4 @@
+module.exports = class ArithmeticExpression {
+  constructor(op, left, right) {
+    Object.assign(this, { op, left, right });
+  }
