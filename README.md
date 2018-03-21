@@ -81,7 +81,7 @@ let x = 10
 let y = 20
 if (x < 20)
     ~Do something
-
+end
 ```
 
 Conditional statement: if else
@@ -93,7 +93,8 @@ if (x < 20)
     ~Do something
  else
     ~ Do something else.
-
+    end
+end
 ```
 
 Iteration. for loop
@@ -104,6 +105,7 @@ let array = [1, 2, 3, 4]
 
 for (let index = 0; index < 4; index++ )
         ~Do something.
+end
 ```
 
 
@@ -116,25 +118,24 @@ let array = [1, 2, 3, 4]
 let index = 0
 while (index < 4)
         ~Do something.
+end
 ```
 
-Printing. console.hot()
+Printing. print :
 
 ```
 let x = 10
 
-console.hot(x)
-   10
+print : 10
 let string = "hello"
 
-console.hot(string)
-    hello
+print : hello
 
 ~ This is an error
 
 let number
 
-console.hot(number)
+print : number
     🔥: 'number' is not initialized.  
 
 ```
@@ -166,10 +167,10 @@ what(something)
 Example of Pycante Dictionaries
 
 ```
-webster = "aardvark": 1,
-    "acapella": 27,
-    "pycante": 469,
-    "spice": 763.
+webster = aardvark: 1,
+    acapella: 27,
+    pycante: 469,
+    spice: 763.
 ```
 
 Example of Pycante Classes
@@ -178,4 +179,5 @@ Example of Pycante Classes
 ♨️ Pepper:
     🌶️ f(self)
         return 'spice is nice'
+end
 ```
