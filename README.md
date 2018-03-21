@@ -5,19 +5,19 @@
 Pycante is the world’s hottest programming language, taking inspiration from the functional capabilities of Javascript and blending in the spacing of Python to bring the user the most intuitive, pleasing experience. Boasting dictionary capabilities, and both static typing and scoping, Pycante is the future of learnable, readable, and reusable code.
 
 ## Features
-* .pyc file extension
 * Type inference: uses what to find out the type of a variable for example, what(TYPE)
 * Static typing
 * Static scoping
 * Strong typing
 * Space matching
-* Assignment is handled using “let”
-* List Ranges? Comprehensions?
-* String Interpolation?
-* For loop, while loop, if statement
-* Composition and object orientation.
-* Dictionaries and object. (Dr. Toal advice)
-* Tuples vs Lists. 
+* Assignment using “let”
+* String Interpolation
+* For loops, while loops, if statements
+* Composition and object orientation
+* Dictionaries
+* Lists
+* Classes
+
 ## Operators
 * Additive: +
 * Subtraction: -
@@ -30,6 +30,7 @@ Pycante is the world’s hottest programming language, taking inspiration from t
 * Increment/Decrement: a++, a--
 * Warning: 🔥
 * Function: 🌶️
+* Class: ♨️
 
 ## Data Types:
 * Number: 4, 27.3, -13.0182
@@ -45,7 +46,7 @@ let x = 12
 
 let y = 10
 
-let z = 0 
+let z = 0
 ```
 
 
@@ -67,7 +68,7 @@ let str = "Hello"
 Expressions
 
 ```
-let addition = 10 + 20 
+let addition = 10 + 20
 
 let multiplication = 10 * 12
 
@@ -77,7 +78,7 @@ Conditional statement: if
 
 ```
 let x = 10
-let y = 20 
+let y = 20
 if (x < 20)
     ~Do something
 
@@ -87,12 +88,12 @@ Conditional statement: if else
 
 ```
 let x = 10
-let y = 20 
+let y = 20
 if (x < 20)
     ~Do something
- else 
+ else
     ~ Do something else.
-    
+
 ```
 
 Iteration. for loop
@@ -102,7 +103,7 @@ Iteration. for loop
 let array = [1, 2, 3, 4]
 
 for (let index = 0; index < 4; index++ )
-        ~Do something. 
+        ~Do something.
 ```
 
 
@@ -114,13 +115,13 @@ let array = [1, 2, 3, 4]
 
 let index = 0
 while (index < 4)
-        ~Do something. 
+        ~Do something.
 ```
 
 Printing. console.hot()
 
 ```
-let x = 10 
+let x = 10
 
 console.hot(x)
    10
@@ -141,7 +142,7 @@ console.hot(number)
 Type Inference. what() function is used to infer the type of something.
 
 ```
-let x = 10 
+let x = 10
 
 what(x)
     number
