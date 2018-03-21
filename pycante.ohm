@@ -13,7 +13,7 @@ Pycante {
               | Class
 
   VarDec = "let" id "=" Exp
-  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
+  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Type Statement* Return "end"
   Param = id ":" Type
 
   Exp  = Exp "or" Exp1       -- binary
