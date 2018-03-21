@@ -1,7 +1,7 @@
 Pycante {
   Program     = Statement*
   Statement   = Assignment        -- assign
-              | plusplus Exp7     -- inc
+              | increment Exp7     -- inc
               | decrement Exp7    -- dec
               | FunCall
               | Declaration
@@ -14,7 +14,7 @@ Pycante {
 
   VarDec = "let" id "=" Exp
   FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
-  Param = id ":" Type
+  Param = id (":" Exp)?
 
   Exp  = Exp "or" Exp1       -- binary
        | Exp1
@@ -28,7 +28,7 @@ Pycante {
        | Exp5
   Exp5 = Exp6 "**" Exp5      -- binary
        | Exp6
-  Exp6 = plusplus Exp7       -- inc
+  Exp6 = increment Exp7       -- inc
        | decrement Exp7      -- dec
        | Exp7
   Exp7 = numberLiteral
@@ -43,7 +43,7 @@ Pycante {
 
   Type  =  "Boolean" | "Number" | "String"
 
-  keyword =  ("let" | "class" | "for" | "while" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false") ~idrest
+  keyword =  ("let" | "class" | "for" | "while" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
 
   FunCall = id "(" (Exp ("," Exp)* )?")"
   Assignment = id "=" Exp
@@ -61,16 +61,16 @@ Pycante {
   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement+ "end"
   WhileStatement = "while" Exp Statement+ "end"
   IfStatement    = "if" Exp Statement+ ("else" Statement+)? "end"
-  PrintStatement = "🔥" ":" Exp
+  PrintStatement = "print" ":" Exp
 
   numberLiteral  = digit+
   stringLiteral  = "\"" (~"\""any)* "\""
   boolLiteral    = "false" | "true"
 
   addop   = "+" | "-"
-  mulop   = "*"| "%" | "/"
+  mulop   = "*"| "%" | "/" | "//"
   relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
-  plusplus = "++"
+  increment = "++"
   decrement = "--"
 
   id = ~keyword ("_" | lower) idrest*
@@ -80,5 +80,5 @@ Pycante {
   space      :=  " " | "\t" | "\n" | comment
   comment     = "~" (~"\n" any)*  -- comment
               | multiLineComment
-  multiLineComment   = "|-" (~"-|" any)* "-|"
+  multiLineComment   = "|-" (~"-|" any)* "-|" -- multiLineComment
 }
