@@ -74,7 +74,7 @@ let multiplication = 10 * 12
 
 ```
 
-Conditional statement: if
+If statement
 
 ```
 let x = 10
@@ -84,7 +84,7 @@ if (x < 20)
 end
 ```
 
-Conditional statement: if else
+If else
 
 ```
 let x = 10
@@ -97,7 +97,7 @@ if (x < 20)
 end
 ```
 
-Iteration. for loop
+For loop
 
 
 ```
@@ -109,7 +109,7 @@ end
 ```
 
 
-Iteration. while
+While Loop
 
 
 ```
@@ -121,7 +121,7 @@ while (index < 4)
 end
 ```
 
-Printing. print :
+Printing:
 
 ```
 let x = 10
@@ -140,7 +140,7 @@ print : number
 
 ```
 
-Type Inference. what() function is used to infer the type of something.
+Type Inference: what() function is used to infer the type of something.
 
 ```
 let x = 10
