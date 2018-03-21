@@ -1,5 +1,5 @@
 module.exports = class Type {
-  constructor() {
-    
+  constructor(type) {
+
   }
 };
