@@ -37,6 +37,7 @@ Pycante {
        | id
        | FunCall
        | List
+       | Dictionary
        | WhatExp
        | "(" Exp ")"         -- parens
        | Exp7 "." FunCall    -- methodCall
@@ -54,6 +55,7 @@ Pycante {
          | Exp                  -- implicitReturnExpression
   WhatExp = "what"  Exp
   List = "[" ListOf<Exp, ","> "]"
+  Dictionary = id ":" Exp ("," id ":" Exp)* "."
 
   Conditional = IfStatement
   Loop = ForStatement | WhileStatement
