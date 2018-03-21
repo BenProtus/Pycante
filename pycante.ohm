@@ -1,7 +1,7 @@
 Pycante {
   Program     = Statement*
   Statement   = Assignment        -- assign
-              | increment Exp7     -- inc
+              | increment Exp7    -- inc
               | decrement Exp7    -- dec
               | FunCall
               | Declaration
@@ -14,7 +14,7 @@ Pycante {
 
   VarDec = "let" id "=" Exp
   FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
-  Param = id (":" Exp)?
+  Param = id ":" Type
 
   Exp  = Exp "or" Exp1       -- binary
        | Exp1
@@ -28,7 +28,7 @@ Pycante {
        | Exp5
   Exp5 = Exp6 "**" Exp5      -- binary
        | Exp6
-  Exp6 = increment Exp7       -- inc
+  Exp6 = increment Exp7      -- inc
        | decrement Exp7      -- dec
        | Exp7
   Exp7 = numberLiteral
@@ -37,6 +37,7 @@ Pycante {
        | id
        | FunCall
        | List
+       | Dictionary
        | WhatExp
        | "(" Exp ")"         -- parens
        | Exp7 "." FunCall    -- methodCall
@@ -54,6 +55,7 @@ Pycante {
          | Exp                  -- implicitReturnExpression
   WhatExp = "what"  Exp
   List = "[" ListOf<Exp, ","> "]"
+  Dictionary = id ":" Exp ("," id ":" Exp)* "."
 
   Conditional = IfStatement
   Loop = ForStatement | WhileStatement
