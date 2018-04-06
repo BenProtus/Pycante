@@ -4,6 +4,7 @@ Pycante {
               | increment Exp7    -- inc
               | decrement Exp7    -- dec
               | FunCall
+              | ListCall
               | Declaration
               | PrintStatement
               | Loop
@@ -44,7 +45,7 @@ Pycante {
 
   Type  =  "Boolean" | "Number" | "String"
 
-  keyword =  ("let" | "class" | "for" | "while" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
+  keyword =  ("let" | "class" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
 
   FunCall = id "(" (Exp ("," Exp)* )?")"
   Assignment = id "=" Exp
@@ -55,6 +56,8 @@ Pycante {
          | Exp                  -- implicitReturnExpression
   WhatExp = "what"  Exp
   List = "[" ListOf<Exp, ","> "]"
+  ListCall = "[" Exp "]"
+
   Dictionary = id ":" Exp ("," id ":" Exp)* "."
 
   Conditional = IfStatement

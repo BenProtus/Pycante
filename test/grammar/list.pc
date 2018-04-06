@@ -2,13 +2,15 @@ let x = [12,12]
 
 let  y = [true, false, true]
 
-
 let z = ["A", "B", "C"]
 
 
-🌶 first (a: Number) ~ This has to be list eventually
-    return ~ eventually you have to handle "return a[0]"
-end
+🌶 add (list: Number) Number
+    let sum  = 0
+    while i > 2
+      sum = sum + list[i]
+      end
+    return sum
+  end
 
-
-first([12, 12, 65])
+add(x)
