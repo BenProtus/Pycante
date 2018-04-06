@@ -1,13 +1,4 @@
 🌶 add (a: Number) Number
-    return a + 10
-end
-
-🌶 mult (a: Number, b: Number) Number
-    return b*a
-end
-
-
-🌶 average (x: Number) Number
-    let result = 50/x
-    return result
+    let b = 15
+    return a + b
 end
