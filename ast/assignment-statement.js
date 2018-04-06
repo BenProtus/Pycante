@@ -3,3 +3,4 @@ module.exports = class AssignmentStatement {
     this.id = id;
     this.expression = expression;
   }
+};

@@ -3,4 +3,11 @@ module.exports = class IfStatement {
     Object.assign(this, { cases, alternate });
   }
 
+  analyze() { // eslint-disable-line class-methods-use-this
+    // Do something
+  }
+
+  optimize() {
+    return this;
+  }
 };

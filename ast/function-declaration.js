@@ -1,5 +1,5 @@
 const FunctionObject = require('./function-object');
-const Params = require('./parameters.js');
+const Params = require('./parameter.js');
 
 // A function declaration binds a function object to a name.
 module.exports = class FunctionDeclaration {
@@ -9,7 +9,6 @@ module.exports = class FunctionDeclaration {
   }
 };
 
- //
- // this.key = id;
- // this.params = params;
- // this.block = block;
+// this.key = id;
+// this.params = params;
+// this.block = block;

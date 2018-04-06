@@ -1,7 +1,7 @@
 const NumericLiteral = require('./numeric-literal');
 
-module.exports = class Increment {
-    constructor(dec, operand) {
-      Object.assign(this, { dec, operand });
-    }
+module.exports = class Decrement {
+  constructor(dec, operand) {
+    Object.assign(this, { dec, operand });
+  }
 };

@@ -1,6 +1,6 @@
 module.exports = class ReturnStatement {
   constructor(exp) {
-     this.expression = exp;
-      this.isReturn = true;
+    this.expression = exp;
+    this.isReturn = true;
   }
 };
