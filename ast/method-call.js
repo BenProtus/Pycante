@@ -1,5 +1,14 @@
 module.exports = class MethodCall {
-  constructor() {
-    
+  constructor(object, call) {
+    this.object = object;
+    this.call = call;
+  }
+
+  analyze() { // eslint-disable-line class-methods-use-this
+    // Do something
+  }
+
+  optimize() {
+    return this;
   }
 };

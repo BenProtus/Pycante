@@ -1,4 +1,4 @@
-module.exports = class NamedType {
+class NamedType {
   constructor(name) {
     this.name = name;
   }
@@ -10,7 +10,7 @@ module.exports = class NamedType {
   optimize() {
     return this;
   }
-};
+}
 
 NamedType.BOOLEAN = new NamedType('bool');
 NamedType.NUMBER = new NamedType('number');
