@@ -3,3 +3,14 @@ module.exports = class ForLoop {
     Object.assign(this, { counter, body });
   }
 };
+
+const VariableInitialization = require('./variable_initialization.js');
+const Type = require('./NamedType');
+
+class ForStatement {
+  constructor(id, exp, block) {
+    this.id = id;
+    this.expression = exp;
+    this.block = block;
+  }
+}

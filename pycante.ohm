@@ -13,20 +13,20 @@ Pycante {
               | Class
 
   VarDec = "let" id "=" Exp
-  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Statement* Return "end"
+  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Type Statement* Return "end"
   Param = id ":" Type
 
   Exp  = Exp "or" Exp1       -- binary
        | Exp1
   Exp1 = Exp1 "and" Exp2     -- binary
        | Exp2
-  Exp2 = Exp3 relop Exp3     -- binary
+  Exp2 = Exp2 relop Exp3     -- binary
        | Exp3
   Exp3 = Exp3 addop Exp4     -- binary
        | Exp4
   Exp4 = Exp4 mulop Exp5     -- binary
        | Exp5
-  Exp5 = Exp6 "**" Exp5      -- binary
+  Exp5 = Exp5 "**" Exp6      -- binary
        | Exp6
   Exp6 = increment Exp7      -- inc
        | decrement Exp7      -- dec

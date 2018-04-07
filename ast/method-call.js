@@ -1,6 +1,7 @@
-module.exports = class IfStatement {
-  constructor(cases, alternate) {
-    Object.assign(this, { cases, alternate });
+module.exports = class MethodCall {
+  constructor(object, call) {
+    this.object = object;
+    this.call = call;
   }
 
   analyze() { // eslint-disable-line class-methods-use-this

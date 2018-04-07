@@ -1,6 +1,6 @@
-module.exports = class IfStatement {
-  constructor(cases, alternate) {
-    Object.assign(this, { cases, alternate });
+module.exports = class IncrementExpression {
+  constructor(increment, op) {
+    this.op = op;
   }
 
   analyze() { // eslint-disable-line class-methods-use-this
