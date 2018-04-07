@@ -56,6 +56,7 @@ Function declarations
 🌶️ add(x, y)
     let z = x + y
     return z
+end 
 ```
 
 ٍStrings

@@ -8,10 +8,10 @@
         "body": [
           {
             "ids": [ "a", "b" ],
-            "initializers": [ { "value": 0 }, { "value": 1 } ]
+            "initializers": [ { "value": 5 }, { "value": 5 } ]
           },
           {
-            "test": {"op": "<", "left": { "id": "b" }, "right": { "id": "n" } },
+            "test": {"op": ">", "left": { "id": "b" }, "right": { "id": "n" } },
             "body": [
               {
                 "targets": [{"id": "a"}, {"id": "b"}],
