@@ -4,8 +4,7 @@ module.exports = class ForLoop {
   }
 };
 
-const VariableInitialization = require('./variable_initialization.js');
-const Type = require('./NamedType');
+
 
 class ForStatement {
   constructor(id, exp, block) {
