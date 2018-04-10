@@ -1,4 +1,3 @@
-const BOOLEAN = require('./NamedType');
 
 module.exports = class BooleanLiteral {
   constructor(value) {
@@ -6,7 +5,7 @@ module.exports = class BooleanLiteral {
   }
 
   analyze() { // eslint-disable-line class-methods-use-this
-    // Do something with BOOLEAN here
+    // Intentionally empty
   }
 
   optimize() {

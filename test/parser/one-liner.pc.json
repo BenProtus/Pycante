@@ -1,4 +1,5 @@
 {
+  "Program" : {
   "statements": [
     {
       "call": {
@@ -7,4 +8,5 @@
       }
     }
   ]
+}
 }

@@ -1,4 +1,4 @@
-// const Context = require('../semantics/context');
+const Context = require('../semantics/context');
 
 module.exports = class Program {
   constructor(statements) {
