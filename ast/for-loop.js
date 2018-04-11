@@ -4,12 +4,10 @@ module.exports = class ForLoop {
   }
 };
 
-
-
-class ForStatement {
-  constructor(id, exp, block) {
-    this.id = id;
-    this.expression = exp;
-    this.block = block;
-  }
-}
+// class ForStatement {
+//   constructor(id, exp, block) {
+//     this.id = id;
+//     this.expression = exp;
+//     this.block = block;
+//   }
+// }
