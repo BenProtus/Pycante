@@ -5,9 +5,8 @@ module.exports = class BooleanLiteral {
     this.value = value;
   }
 
-
-  analyze() { // eslint-disable-line class-methods-use-this
-    // Intentionally empty
+  analyze() {
+    this.type = NamedType.BOOLEAN;
   }
 
   optimize() {
