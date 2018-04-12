@@ -4,7 +4,7 @@ class NamedType {
   }
 
   analyze() { // eslint-disable-line class-methods-use-this
-    // Do something
+    // Intentionally empty
   }
 
   optimize() {
@@ -15,3 +15,5 @@ class NamedType {
 NamedType.BOOLEAN = new NamedType('bool');
 NamedType.NUMBER = new NamedType('number');
 NamedType.STRING = new NamedType('string');
+
+module.exports = NamedType;

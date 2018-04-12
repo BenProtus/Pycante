@@ -1,9 +1,22 @@
-const BoolLit = require('./boolean-literal.js');
-const NumLit = require('./numeric-literal.js');
+const BooleanLiteral = require('./boolean-literal');
+const NumericLiteral = require('./numeric-literal');
 
-module.exports = class UnaryExpression {
-  constructor(op, exp) {
-    this.op = op;
-    this.expression = exp;
+module.operandorts = class Unaryoperandression {
+  constructor(op, operand) {
+    Object.assign(this, { op, operand });
+  }
+
+  analyze(context) {
+    this.operand.analyze(context);
+  }
+
+  optimize() {
+    this.operand = this.operand.optimize();
+    if (this.op === 'not' && this.operand instanceof BooleanLiteral) {
+      return BooleanLiteral(!this.operand.value);
+    } else if (this.op === '-' && this.operand instanceof NumericLiteral) {
+      return new NumericLiteral(-this.operand.value);
+    }
+    return this;
   }
 };

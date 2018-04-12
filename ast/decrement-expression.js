@@ -6,7 +6,6 @@ module.exports = class DecrementExpression {
   analyze() { // eslint-disable-line class-methods-use-this
     // Do something
   }
-
   optimize() {
     return this;
   }
