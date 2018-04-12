@@ -2,14 +2,13 @@
 ![Main Menu](logo.png)
 
 ## Introduction
-Pycante is the world’s hottest programming language, taking inspiration from the functional capabilities of Javascript and blending in the spacing of Python to bring the user the most intuitive, pleasing experience. Boasting dictionary capabilities, and both static typing and scoping, Pycante is the future of learnable, readable, and reusable code.
+Pycante is the world’s hottest programming language, taking inspiration from the functional capabilities of Javascript and blending Python to bring the user the most intuitive, pleasing experience. Boasting dictionary capabilities, and both static typing and scoping, Pycante is the future of learnable, readable, and reusable code.
 
 ## Features
 * Type inference: uses what to find out the type of a variable for example, what(TYPE)
 * Static typing
 * Static scoping
 * Strong typing
-* Space matching
 * Assignment using “let”
 * String Interpolation
 * For loops, while loops, if statements
@@ -56,7 +55,7 @@ Function declarations
 🌶️ add(x, y)
     let z = x + y
     return z
-end 
+end
 ```
 
 ٍStrings
