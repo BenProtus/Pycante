@@ -1,6 +1,6 @@
 Pycante {
   Program     = Statement*
-  Statement   = Assignment        -- assign
+  Statement   = Assignment
               | increment Exp7    -- inc
               | decrement Exp7    -- dec
               | FunCall
@@ -13,13 +13,14 @@ Pycante {
               | FunDeclaration
               | Class
 
-  VarDec = "let" id "=" Exp
-  FunDeclaration = "🌶" id "(" (Param ("," Param)*)? ")" Type Statement* Return "end"
-  Param = id ":" Type
+  VarDec         = "let" id "=" Exp
+  FunDeclaration = "🌶" id "(" Params? ")" Type Statement* Return "end"
+  Params         = Param ("," Param)*
+  Param          = id ":" Type
 
-  Exp  = Exp "or" Exp1       -- binary
+  Exp  = Exp "or" Exp1       -- or
        | Exp1
-  Exp1 = Exp1 "and" Exp2     -- binary
+  Exp1 = Exp1 "and" Exp2     -- and
        | Exp2
   Exp2 = Exp2 relop Exp3     -- binary
        | Exp3
