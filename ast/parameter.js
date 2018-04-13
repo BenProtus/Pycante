@@ -4,7 +4,7 @@ module.exports = class Parameter {
   }
 
   analyze(context){
-  	if(this.Type === undefined){
+  	if(context.lookup(this.Type) === undefined){
   		throw new Error('Parameter was not given a type.');
   	}
   }
