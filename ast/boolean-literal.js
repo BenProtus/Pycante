@@ -10,6 +10,10 @@ module.exports = class BooleanLiteral {
     // Intentionally empty
   }
 
+  toString() {
+    return this.value;
+  }
+
   optimize() {
     return this;
   }
