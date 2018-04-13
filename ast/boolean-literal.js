@@ -9,6 +9,10 @@ module.exports = class BooleanLiteral {
     this.type = NamedType.BOOLEAN;
   }
 
+  toString() {
+    return this.value;
+  }
+
   optimize() {
     return this;
   }
