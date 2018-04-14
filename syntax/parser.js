@@ -49,13 +49,18 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   FunDeclaration(_1, id, _2, Params, _3, Type, Statement, Return, _4) {
     return new FunDeclaration(id.ast(), Params.ast(), Type.ast(), Statement.ast(), Return.ast());
   },
+<<<<<<< HEAD
   //Params(Param1, _1, Param2) { return new Params},
   Param(id, _1, Type) { return new Param(id.ast(), Type.ast()) },
+=======
+  Params(Param1, _1, Param2) { return new Params(Param1.ast(), Param2.ast())},
+  Param(id, _1, type) { return new Param(id.ast(), type.ast());},
+>>>>>>> d8221852150ef1e08cfd96252efb0b59511506f6
   Exp_or(left, op, right) {
-    return new BinaryExpression(op.ast(), left.ast(), right.ast());
+    return new BinaryExpression(left.ast(), op.ast(), right.ast());
   },
   Exp_and(left, op, right) {
-    return new BinaryExpression(op.ast(), right.ast());
+    return new BinaryExpression(left.ast(), op.ast(), right.ast());
   },
   Exp1_binary(left, op, right) {
     return new BinaryExpression(op.ast(), left.ast(), right.ast());
@@ -72,7 +77,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp5_binary(left, op, right) {
     return new BinaryExpression(op.ast(), left.ast(), right.ast());
   },
-  Exp6_inc() {},
+  Exp6_inc(op, exp) {
+    return new IncrementExp(op.ast(), exp.ast());
+  },
   Exp6_dec() {},
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Type(name) {},
