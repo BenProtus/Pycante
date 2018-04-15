@@ -176,7 +176,7 @@ webster = aardvark: 1,
 Example of Pycante Classes
 
 ```
-♨️ Pepper:
+♨️ Pepper
     🌶️ f(self)
         return 'spice is nice'
 end
