@@ -61,16 +61,18 @@ Pycante {
   List = "[" ListOf<Exp, ","> "]"
   ListCall = "[" Exp "]"
 
-  Dictionary = DictTerm Dicterms* "."
+  Dictionary = DictTerm DictTerms* "."
   DictTerm   = id ":" Exp
   DictTerms  = "," id ":" Exp
 
   Loop = ForStatement | WhileStatement
 
-  ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement+ "end"
-  WhileStatement = "while" Exp Statement+ "end"
-  IfStatement    = "if" Exp Statement+ ("else" Statement+)? "end"
-  PrintStatement = "print" ":" Exp
+  ForStatement   = "for" VarDec ";" Test ";" Exp ":" Suite "end"
+  WhileStatement = "while" Test Suite "end"
+  IfStatement    = "if" Test Suite ("else if" Test Suite)? ("else" Suite)? "end"
+  PrintStatement = "print:" Exp
+  Test = Exp relop Exp
+  Suite = Statement*
 
   numberLiteral  = digit+
   stringLiteral  = "\"" (~"\""any)* "\""
