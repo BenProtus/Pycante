@@ -24,7 +24,7 @@ const Param = require('../ast/parameter');
 const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
 const StringLiteral = require('../ast/string-literal');
-const ForLoop = require('../ast/for-loop');
+const ForStatement = require('../ast/for-loop');
 const NamedTyped = require('../ast/NamedType');
 const MethodCall = require('../ast/method-call');
 const ListExpression = require('../ast/list-expression');
@@ -46,9 +46,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Statement_inc(op, e) { return new IncrementStat(op.sourceString(), e.ast()); },
   Statement_dec(op, e) { return new DecrementStat(op.sourceString(), e.ast()); },
   VarDec(_1, id, _2, e) { return new VarDec(id.ast(), e.ast()); },
-  FunDeclaration(_1, id, _2, Params, _3, Type, Statement, Return, _4) {
+  FunDeclaration(_1, id, _2, Pars, _3, Type, Statement, Return, _4) {
     return new FunDeclaration(id.ast(), Params.ast(), Type.ast(), Statement.ast(), Return.ast());
   },
+<<<<<<< HEAD
 
   //Params(Param1, _1, Param2) { return new Params},
   Param(id, _1, Type) { return new Param(id.ast(), Type.ast()) },
@@ -56,6 +57,11 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Params(Param1, _1, Param2) { return new Params(Param1.ast(), Param2.ast())},
   Param(id, _1, type) { return new Param(id.ast(), type.ast());},
 
+=======
+  // Params(Param1, _1, Param2) { return new Params},
+  Params(Param1, _1, Param2) { return new Params(Param1.ast(), Param2.ast()); },
+  Param(id, _1, type) { return new Param(id.ast(), type.ast()); },
+>>>>>>> 24a5f0ef97d95ffa4dd2b8f1ac5ea583c9ba162b
   Exp_or(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
   },
@@ -80,21 +86,26 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp6_inc(op, exp) {
     return new IncrementExp(op.ast(), exp.ast());
   },
-  Exp6_dec() {},
+  Exp6_dec(op, exp) {
+    return new DecrementExp(op.ast(), exp.ast());
+  },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
-  Type(name) {},
-  FunCall() {},
+  Type(name) { return name.ast(); },
+  FunCall(id, _1, Exps, _2) { return new FunCall(id.ast(), Exps.ast()); },
   Assignment(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
-  Class() {},
-  Return_returnExpression() {},
-  Return_returnNothing() {},
-  Return_implicitReturnExpression() {},
-  WhatExp() {},
-  List() {},
-  Dictionary() {},
-  Conditional() {},
-  Loop() {},
-  ForStatement() {},
+  Class(_1, id, VarDec, FunDeclaration, _2) {
+    return new Class(id.ast(), VarDec.ast(), FunDeclaration.ast());
+  },
+  Return_returnExpression(_1, e) { return e.ast(); },
+  Return_returnNothing(_1) {},
+  Return_implicitReturnExpression(e) { return e.ast(); },
+  WhatExp(_1, e) { return e.ast(); },
+  List(_1, exp1, exp2, _2) { return [exp1.ast(), ...exp2.ast()]; },
+//need to allow Dictionary to have many possible sets...
+  Dictionary(id, _1, exp) { return new Dictionary.ast();},
+  ForStatement(_1, _2, VarDec, _3, Exp, _4, Exp2, _5, Statements, _6) {
+    return new ForStatement(VarDec.ast(), Exp.ast(), Exp2.ast(), Statements.ast());
+  },
 
   WhileStatement(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
 
@@ -107,7 +118,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
 
 
   Stmt_def(_1, id, _2, params, _3, suite) {
-    return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
+    return new FunDeclaration(id.ast(), params.ast(), suite.ast());
   },
   // SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },

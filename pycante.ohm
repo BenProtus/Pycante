@@ -8,7 +8,7 @@ Pycante {
               | Declaration
               | PrintStatement
               | Loop
-              | Conditional
+              | IfStatement
   Declaration = VarDec
               | FunDeclaration
               | Class
@@ -43,12 +43,14 @@ Pycante {
        | WhatExp
        | "(" Exp ")"         -- parens
        | Exp7 "." FunCall    -- methodCall
+  Exps = Exp ("," Exp)*
 
   Type  =  "Boolean" | "Number" | "String"
 
   keyword =  ("let" | "class" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
 
-  FunCall = id "(" (Exp ("," Exp)* )?")"
+  FunCall = id "(" Exps? ")"
+
   Assignment = id "=" Exp
   Class = "♨️" id VarDec* FunDeclaration* "end"
 
@@ -59,9 +61,10 @@ Pycante {
   List = "[" ListOf<Exp, ","> "]"
   ListCall = "[" Exp "]"
 
-  Dictionary = id ":" Exp ("," id ":" Exp)* "."
+  Dictionary = DictTerm Dicterms* "."
+  DictTerm   = id ":" Exp
+  DictTerms  = "," id ":" Exp
 
-  Conditional = IfStatement
   Loop = ForStatement | WhileStatement
 
   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement+ "end"
