@@ -1,6 +1,6 @@
-module.exports = class DictionaryExpression {
-  constructor(id, body) {
-    this.id = id;
-    this.body = body;
+const Type = require("./NamedType");
+module.exports =   class DictionaryType extends Type {
+  constructor(keyType, valueType) {
+    this.valueType = Type.valueType;
   }
 };
