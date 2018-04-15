@@ -46,16 +46,12 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Statement_inc(op, e) { return new IncrementStat(op.sourceString(), e.ast()); },
   Statement_dec(op, e) { return new DecrementStat(op.sourceString(), e.ast()); },
   VarDec(_1, id, _2, e) { return new VarDec(id.ast(), e.ast()); },
-  FunDeclaration(_1, id, _2, Params, _3, Type, Statement, Return, _4) {
+  FunDeclaration(_1, id, _2, Pars, _3, Type, Statement, Return, _4) {
     return new FunDeclaration(id.ast(), Params.ast(), Type.ast(), Statement.ast(), Return.ast());
   },
-<<<<<<< HEAD
-  //Params(Param1, _1, Param2) { return new Params},
-  Param(id, _1, Type) { return new Param(id.ast(), Type.ast()) },
-=======
-  Params(Param1, _1, Param2) { return new Params(Param1.ast(), Param2.ast())},
-  Param(id, _1, type) { return new Param(id.ast(), type.ast());},
->>>>>>> d8221852150ef1e08cfd96252efb0b59511506f6
+  // Params(Param1, _1, Param2) { return new Params},
+  Params(Param1, _1, Param2) { return new Params(Param1.ast(), Param2.ast()); },
+  Param(id, _1, type) { return new Param(id.ast(), type.ast()); },
   Exp_or(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
   },
@@ -107,7 +103,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
 
 
   Stmt_def(_1, id, _2, params, _3, suite) {
-    return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
+    return new FunDeclaration(id.ast(), params.ast(), suite.ast());
   },
   // SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
