@@ -31,7 +31,7 @@ const ListExpression = require('../ast/list-expression');
 const IdExpression = require('../ast/id-expression');
 const functionObj = require('../ast/function-object');
 const FunctionCall = require('../ast/function-call');
-const dictionaryExpression = require('../ast/dictionary-expression');
+const DictionaryExpression = require('../ast/dictionary-expression');
 const classDec = require('../ast/class-declaration');
 
 function unpack(a) {
@@ -55,11 +55,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp_or(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
   },
-  Exp_and(left, op, right) {
+  Exp1_and(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
-  },
-  Exp1_binary(left, op, right) {
-    return new BinaryExpression(op.ast(), left.ast(), right.ast());
   },
   Exp2_binary(left, op, right) {
     return new BinaryExpression(op.ast(), left.ast(), right.ast());
@@ -90,41 +87,47 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Return_returnNothing(_1) {},
   Return_implicitReturnExpression(e) { return e.ast(); },
   WhatExp(_1, e) { return e.ast(); },
-  List(_1, exp1, exp2, _2) { return [exp1.ast(), ...exp2.ast()]; },
-//need to allow Dictionary to have many possible sets...
-  Dictionary(id, _1, exp) { return new Dictionary.ast();},
-  ForStatement(_1, _2, VarDec, _3, Exp, _4, Exp2, _5, Statements, _6) {
-    return new ForStatement(VarDec.ast(), Exp.ast(), Exp2.ast(), Statements.ast());
+  List(_1, exp, _2) { return [...exp.ast()]; },
+  // need to allow Dictionary to have many possible sets...
+  Dictionary(DictTerm, DictTerms, _) {
+    return new DictionaryExpression(DictTerm, ...DictTerms);
+  },
+  // Add DictTerm to AST folder
+  DictTerm(id, _, Exp) { return new DictTerm(id, Exp); },
+  DictTerms(_1, id, _2, Exp) { return new DictTerms(id, Exp); },
+
+  ForStatement(_1, VDec, _2, Test, _3, Exp, _5, Suite, _6) {
+    return new ForStatement(VarDec.ast(), Test.ast(), Exp.ast(), Suite.ast());
   },
 
-  WhileStatement(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
+  WhileStatement(_1, test, suite, _2) { return new WhileStatement(test.ast(), suite.ast()); },
 
-  IfStatement(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
+  IfStatement(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite, _4) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
     const bodies = [firstSuite.ast(), ...moreSuites.ast()];
-    // const cases = tests.map((test, index) => new Case(test, bodies[index]));
-    // return new IfStatement(cases, unpack(lastSuite.ast()));
+    const cases = tests.map((test, index) => new Case(test, bodies[index]));
+    return new IfStatement(cases, unpack(lastSuite.ast()));
   },
 
 
-  Stmt_def(_1, id, _2, params, _3, suite) {
-    return new FunDeclaration(id.ast(), params.ast(), suite.ast());
-  },
-  // SimpleStmt_break(_) { return new BreakStatement(); },
-  SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
-  // SimpleStmt_call(c) { return new CallStatement(c.ast()); },
-  Suite_small(_1, statement, _2) { return [statement.ast()]; },
-  Suite_large(_1, _2, _3, statements, _4) { return statements.ast(); },
-  // VarExp_subscripted(v, _1, e, _2) { return new SubscriptedExpression(v.ast(), e.ast()); },
-  // VarExp_simple(id) { return new IdentifierExpression(id.ast()); },
-  NonemptyListOf(first, _, rest) { return [first.ast(), ...rest.ast()]; },
-  EmptyListOf() { return []; },
-  boollit(_) { return new BooleanLiteral(!!this.sourceString); },
-  numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
-  strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
-
-  id(_1, _2) { return this.sourceString; },
-  _terminal() { return this.sourceString; },
+  // Stmt_def(_1, id, _2, params, _3, suite) {
+  //   return new FunDeclaration(id.ast(), params.ast(), suite.ast());
+  // },
+  // // SimpleStmt_break(_) { return new BreakStatement(); },
+  // SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
+  // // SimpleStmt_call(c) { return new CallStatement(c.ast()); },
+  // Suite_small(_1, statement, _2) { return [statement.ast()]; },
+  // Suite_large(_1, _2, _3, statements, _4) { return statements.ast(); },
+  // // VarExp_subscripted(v, _1, e, _2) { return new SubscriptedExpression(v.ast(), e.ast()); },
+  // // VarExp_simple(id) { return new IdentifierExpression(id.ast()); },
+  // NonemptyListOf(first, _, rest) { return [first.ast(), ...rest.ast()]; },
+  // EmptyListOf() { return []; },
+  // boollit(_) { return new BooleanLiteral(!!this.sourceString); },
+  // numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
+  // strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
+  //
+  // id(_1, _2) { return this.sourceString; },
+  // _terminal() { return this.sourceString; },
 });
 /* eslint-enable no-unused-vars */
 
