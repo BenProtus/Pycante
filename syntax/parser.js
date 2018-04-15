@@ -24,7 +24,7 @@ const Param = require('../ast/parameter');
 const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
 const StringLiteral = require('../ast/string-literal');
-const ForLoop = require('../ast/for-loop');
+const ForStatement = require('../ast/for-loop');
 const NamedTyped = require('../ast/NamedType');
 const MethodCall = require('../ast/method-call');
 const ListExpression = require('../ast/list-expression');
@@ -76,21 +76,26 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp6_inc(op, exp) {
     return new IncrementExp(op.ast(), exp.ast());
   },
-  Exp6_dec() {},
+  Exp6_dec(op, exp) {
+    return new DecrementExp(op.ast(), exp.ast());
+  },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
-  Type(name) {},
-  FunCall() {},
+  Type(name) { return name.ast(); },
+  FunCall(id, _1, Exps, _2) { return new FunCall(id.ast(), Exps.ast()); },
   Assignment(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
-  Class() {},
-  Return_returnExpression() {},
-  Return_returnNothing() {},
-  Return_implicitReturnExpression() {},
-  WhatExp() {},
-  List() {},
-  Dictionary() {},
-  Conditional() {},
-  Loop() {},
-  ForStatement() {},
+  Class(_1, id, VarDec, FunDeclaration, _2) {
+    return new Class(id.ast(), VarDec.ast(), FunDeclaration.ast());
+  },
+  Return_returnExpression(_1, e) { return e.ast(); },
+  Return_returnNothing(_1) {},
+  Return_implicitReturnExpression(e) { return e.ast(); },
+  WhatExp(_1, e) { return e.ast(); },
+  List(_1, exp1, exp2, _2) { return [exp1.ast(), ...exp2.ast()]; },
+//need to allow Dictionary to have many possible sets...
+  Dictionary(id, _1, exp) { return new Dictionary.ast();},
+  ForStatement(_1, _2, VarDec, _3, Exp, _4, Exp2, _5, Statements, _6) {
+    return new ForStatement(VarDec.ast(), Exp.ast(), Exp2.ast(), Statements.ast());
+  },
 
   WhileStatement(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
 
