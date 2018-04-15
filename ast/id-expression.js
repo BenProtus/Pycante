@@ -16,6 +16,4 @@ module.exports = class IdentifierExpression {
   optimize() {
     return this;
   }
-
-}
 };
