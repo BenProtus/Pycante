@@ -19,5 +19,5 @@ module.exports = class Call {
     this.args.optimize();
     return this;
   }
-  
+
 };
