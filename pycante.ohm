@@ -3,7 +3,7 @@ Pycante {
   Statement   = Assignment
               | increment Exp7    -- inc
               | decrement Exp7    -- dec
-              | FunCall
+              | FunctionCall
               | ListCall
               | Declaration
               | PrintStatement
@@ -11,7 +11,7 @@ Pycante {
               | IfStatement
   Declaration = VarDec
               | FunDeclaration
-              | Class
+              | ClassDec
 
   VarDec         = "let" id "=" Exp
   FunDeclaration = "🌶" id "(" Params? ")" Type Statement* Return "end"
@@ -33,31 +33,31 @@ Pycante {
   Exp6 = increment Exp7      -- inc
        | decrement Exp7      -- dec
        | Exp7
-  Exp7 = numberLiteral
-       | stringLiteral
-       | boolLiteral
+  Exp7 = NumberLiteral
+       | StringLiteral
+       | BoolLiteral
        | id
-       | FunCall
+       | FunctionCall
        | List
        | Dictionary
        | WhatExp
        | "(" Exp ")"         -- parens
-       | Exp7 "." FunCall    -- methodCall
+       | Exp7 "." FunctionCall    -- methodCall
   Exps = Exp ("," Exp)*
 
   Type  =  "Boolean" | "Number" | "String"
 
-  keyword =  ("let" | "class" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
+  keyword =  ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
 
-  FunCall = id "(" Exps? ")"
+  FunctionCall = id "(" Exps? ")"
 
   Assignment = id "=" Exp
-  Class = "♨️" id VarDec* FunDeclaration* "end"
+  ClassDec = "♨️" id VarDec* FunDeclaration* "end"
 
   Return = "return" Exp         -- returnExpression
          | "return"             -- returnNothing
          | Exp                  -- implicitReturnExpression
-  WhatExp = "what"  Exp
+  WhatExp = "what" Exp
   List = "[" ListOf<Exp, ","> "]"
   ListCall = "[" Exp "]"
 
@@ -67,16 +67,16 @@ Pycante {
 
   Loop = ForStatement | WhileStatement
 
-  ForStatement   = "for" VarDec ";" Test ";" Exp ":" Suite "end"
-  WhileStatement = "while" Test Suite "end"
-  IfStatement    = "if" Test Suite ("else if" Test Suite)? ("else" Suite)? "end"
-  PrintStatement = "print:" Exp
-  Test = Exp relop Exp
-  Suite = Statement*
+  ForStatement   = "for" ForBlock Statement* "end"
+  ForBlock       = "(" (VarDec | Assignment) ";" Exp3 relop Exp3 ";" Exp ")"
+  WhileStatement = "while" Test Statement* "end"
+  IfStatement    = "if" Test Statement* ("else if" Test Statement*)* ("else" Statement*)? "end"
+  PrintStatement = "print" ":" Exp
+  Test           = "(" Exp3 relop Exp3 ")"
 
-  numberLiteral  = digit+
-  stringLiteral  = "\"" (~"\""any)* "\""
-  boolLiteral    = "false" | "true"
+  NumberLiteral  = digit+
+  StringLiteral  = "\"" (~"\""any)* "\""
+  BoolLiteral    = "false" | "true"
 
   addop   = "+" | "-"
   mulop   = "*"| "%" | "/" | "//"

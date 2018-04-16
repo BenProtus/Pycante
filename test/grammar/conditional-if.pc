@@ -1,9 +1,9 @@
 if (10 > 8)
     let u = 20
-    if (20 == 20)
+    if (19 == 20)
         let y = 20
         let x = "Hello"
-    else
+    else if (true == true)
         let v = 50
     end
 else
