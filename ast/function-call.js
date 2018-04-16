@@ -1,3 +1,4 @@
+const Context = require('../semantics/context');
 module.exports = class Call {
   constructor(id, args) {
     this.id = id;
