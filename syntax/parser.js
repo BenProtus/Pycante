@@ -32,6 +32,7 @@ const IdExpression = require('../ast/id-expression');
 const FunctionDec = require('../ast/function-declaration');
 const FunctionCall = require('../ast/function-call');
 const DictionaryExpression = require('../ast/dictionary-expression');
+const DictTerm = require('../ast/dict-term');
 const Case = require('../ast/case');
 
 function unpack(a) {

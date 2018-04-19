@@ -61,7 +61,7 @@ Pycante {
   List = "[" ListOf<Exp, ","> "]"
   ListCall = "[" Exp "]"
 
-  Dictionary = DictTerm ("," Dicterm)* "."
+  Dictionary = DictTerm ("," DictTerm)* "."
   DictTerm   = id ":" Exp
 
   Loop = ForStatement | WhileStatement

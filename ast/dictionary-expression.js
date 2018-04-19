@@ -1,22 +1,21 @@
-const Type = require('./NamedType');
-
 module.exports = class Dictionary {
-  constructor(bindList, valueType) {
-    this.bindList = bindList;
-    this.valueType = Type.valueType;
+  constructor(termList) {
+    this.termList = termList;
   }
+
   analyze(context) {
-    this.bindList.items.forEach((item) => {
+    this.termList.items.forEach((item) => {
       item.analyze(context);
     });
-    return this.valueType;
+    return this;
   }
+
   length() {
-    return this.items.length;
+    return this.termList.length;
   }
 
   optimize() {
-    this.items.optimize();
+    this.termList.optimize();
     return this;
   }
 };
