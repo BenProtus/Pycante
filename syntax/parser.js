@@ -107,7 +107,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     const cases = tests.map((test, index) => new Case(test, bodies[index]));
     return new IfStatement(cases, unpack(lastSuite.ast()));
   },
-  PrintStatement(_1, _2, exp) { return exp.ast(); },
+  PrintStatement(_1, _2, exp) { return new PrintStatement(exp.ast()); },
+  Test(_1, exp, _2) { return exp.ast(); },
 
   BoolLiteral(_) { return new BoolLiteral(!!this.sourceString); },
   NumberLiteral(_) { return new NumberLiteral(+this.sourceString); },
