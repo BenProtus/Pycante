@@ -91,12 +91,11 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   WhatExp(_1, exp) { return exp.ast(); },
   List(_1, exp, _2) { return [...exp.ast()]; },
   // need to allow Dictionary to have many possible sets...
-  Dictionary(DictTerm, DictTerms, _) {
-    return new DictionaryExpression(DictTerm, ...DictTerms);
+  Dictionary(t, _1, ts, _2) {
+    return new DictionaryExpression([t.ast(), ...ts.ast()]);
   },
   // Add DictTerm to AST folder
   DictTerm(id, _, Exp) { return new DictTerm(id, Exp); },
-  DictTerms(_1, id, _2, Exp) { return new DictTerms(id, Exp); },
   ForStatement(_1, forblock, statement, _6) {
     return new ForStatement(forblock.ast(), statement.ast());
   },
