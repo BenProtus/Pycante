@@ -3,9 +3,10 @@ module.exports = class DecrementExpression {
     this.op = op;
   }
 
-  analyze() { // eslint-disable-line class-methods-use-this
-    // Do something
+  analyze(context) {
+    this.op.analyze(context);
   }
+
   optimize() {
     return this;
   }
