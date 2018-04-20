@@ -19,13 +19,14 @@ const WhileStatement = require('../ast/while-statement');
 const WhatExpression = require('../ast/what-expression');
 const FunDeclaration = require('../ast/function-declaration');
 const BinaryExpression = require('../ast/binary-expression');
+const SubscriptedExpression = require('../ast/subscripted-expression');
 const Params = require('../ast/parameter');
 const Param = require('../ast/parameter');
 const BoolLiteral = require('../ast/boolean-literal');
 const NumberLiteral = require('../ast/numeric-literal');
 const StringLiteral = require('../ast/string-literal');
 const ForStatement = require('../ast/for-loop');
-const NamedTyped = require('../ast/NamedType');
+const NamedType = require('../ast/NamedType');
 const MethodCall = require('../ast/method-call');
 const ListExpression = require('../ast/list-expression');
 const IdExpression = require('../ast/id-expression');
@@ -44,8 +45,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
 
   Program(Statement) { return new Program(Statement.ast()); },
 
-  Statement_inc(op, exp) { return new IncrementStat(op.sourceString(), exp.ast()); },
-  Statement_dec(op, exp) { return new DecrementStat(op.sourceString(), exp.ast()); },
+  Statement_inc(op, exp) { return new IncrementStat(op.sourceString, exp.ast()); },
+  Statement_dec(op, exp) { return new DecrementStat(op.sourceString, exp.ast()); },
   VarDec(_1, id, _2, exp) { return new VarDec(id.ast(), exp.ast()); },
   FunDeclaration(_1, id, _2, params, _3, type, statement, Return, _4) {
     return new FunDeclaration(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
@@ -79,6 +80,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     return new DecrementExp(op.ast(), exp.ast());
   },
   Exp7_parens(_1, exp, _2) { return exp.ast(); },
+  Exp7_subscripted(list, _1, subscript, _2) {
+    return new SubscriptedExpression(list.ast(), subscript.ast());
+  },
 
   Type(type) { return type.ast(); },
   FunctionCall(id, _1, exps, _2) { return new FunctionCall(id.ast(), exps.ast()); },
@@ -90,6 +94,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Return_returnNothing(_1) {},
   Return_implicitReturnExpression(exp) { return exp.ast(); },
   WhatExp(_1, exp) { return exp.ast(); },
+  Exps(first, _1, rest) { return [first.ast(), ...rest.ast()]; },
   List(_1, exp, _2) { return new ListExpression([...exp.ast()]); },
   // need to allow Dictionary to have many possible sets...
   Dictionary(t, _1, ts, _2) {
@@ -97,8 +102,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   },
   // Add DictTerm to AST folder
   DictTerm(id, _, Exp) { return new DictTerm(id, Exp); },
-  ForStatement(_1, forblock, statement, _6) {
-    return new ForStatement(forblock.ast(), statement.ast());
+  //   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
+  ForStatement(_1, _2, varDec, _3, test, _4, incdec, _5, body, _6) {
+    return new ForStatement(body.ast(), varDec.ast(), test.ast(), incdec.ast());
   },
   WhileStatement(_1, test, suite, _2) { return new WhileStatement(test.ast(), suite.ast()); },
   IfStatement(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite, _4) {
@@ -113,6 +119,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   BoolLiteral(_) { return new BoolLiteral(!!this.sourceString); },
   NumberLiteral(_) { return new NumberLiteral(+this.sourceString); },
   StringLiteral(_1, chars, _6) { return new StringLiteral(this.sourceString); },
+
+  NonemptyListOf(first, _, rest) { return [first.ast(), ...rest.ast()]; },
+  EmptyListOf() { return []; },
 
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },
