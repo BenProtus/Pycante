@@ -65,7 +65,7 @@ Pycante {
   DictTerm   = id ":" Exp
 
   Loop = ForStatement | WhileStatement
-
+  
   ForStatement   = "for" ForBlock Statement* "end"
   ForBlock       = "(" (VarDec | Assignment) ";" Exp3 relop Exp3 ";" Exp ")"
   WhileStatement = "while" Test Statement* "end"
