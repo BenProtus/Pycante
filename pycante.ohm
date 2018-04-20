@@ -71,7 +71,7 @@ Pycante {
   WhileStatement = "while" Test Statement* "end"
   IfStatement    = "if" Test Statement* ("else if" Test Statement*)* ("else" Statement*)? "end"
   PrintStatement = "print" ":" Exp
-  Test           = "(" Exp ")"
+  Test           = "(" Exp relop Exp ")"
 
   NumberLiteral  = digit+
   StringLiteral  = "\"" (~"\""any)* "\""
