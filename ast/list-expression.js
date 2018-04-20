@@ -1,4 +1,3 @@
-
 const Type = require('./NamedType');
 
 module.exports = class List {
@@ -12,7 +11,6 @@ module.exports = class List {
     for (let i = 0; i < this.exp.length; i += 1) {
       this.exp[i].analyze(context);
     }
-
   }
 
   optimize() {

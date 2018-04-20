@@ -90,7 +90,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Return_returnNothing(_1) {},
   Return_implicitReturnExpression(exp) { return exp.ast(); },
   WhatExp(_1, exp) { return exp.ast(); },
-  List(_1, exp, _2) { return [...exp.ast()]; },
+  List(_1, exp, _2) { return new ListExpression([...exp.ast()]); },
   // need to allow Dictionary to have many possible sets...
   Dictionary(t, _1, ts, _2) {
     return new DictionaryExpression([t.ast(), ...ts.ast()]);
