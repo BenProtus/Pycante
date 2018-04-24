@@ -45,33 +45,28 @@ Pycante {
        | "(" Exp ")"              -- parens
   Exps = Exp ("," Exp)*
 
-  Type  =  "Boolean" | "Number" | "String"
-
-  keyword =  ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
-
+  Type         = "Boolean" | "Number" | "String"
+  keyword      = ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
   FunctionCall = id "(" Exps? ")"
 
   Assignment = id "=" Exp
-  ClassDec = "♨️" id VarDec* FunDeclaration* "end"
+  ClassDec   = "♨️" id VarDec* FunDeclaration* "end"
 
-  Return = "return" Exp         -- returnExpression
-         | "return"             -- returnNothing
-         | Exp                  -- implicitReturnExpression
+  Return  = "return" Exp         -- returnExpression
+          | "return"             -- returnNothing
+          | Exp                  -- implicitReturnExpression
   WhatExp = "what" Exp
-  List = "[" ListOf<Exp, ","> "]"
+  List    = "[" ListOf<Exp, ","> "]"
 
   Dictionary = DictTerm ("," DictTerm)* "."
   DictTerm   = id ":" Exp
 
   Loop = ForStatement | WhileStatement
-<<<<<<< HEAD
-  
+
   ForStatement   = "for" ForBlock Statement* "end"
   ForBlock       = "(" (VarDec | Assignment) ";" Exp3 relop Exp3 ";" Exp ")"
-=======
 
   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
->>>>>>> a3468193163825bccc7b4baef60c6d8b38ab914a
   WhileStatement = "while" Test Statement* "end"
   IfStatement    = "if" Test Statement* ("else if" Test Statement*)* ("else" Statement*)? "end"
   PrintStatement = "print" ":" Exp
@@ -81,13 +76,13 @@ Pycante {
   StringLiteral  = "\"" (~"\""any)* "\""
   BoolLiteral    = "false" | "true"
 
-  addop   = "+" | "-"
-  mulop   = "*"| "%" | "/" | "//"
-  relop   = "<=" | ">=" | ">" | "<" | "==" | "!="
+  addop     = "+" | "-"
+  mulop     = "*"| "%" | "/" | "//"
+  relop     = "<=" | ">=" | ">" | "<" | "==" | "!="
   increment = "++"
   decrement = "--"
 
-  id = ~keyword ("_" | lower) idrest*
+  id     = ~keyword ("_" | lower) idrest*
   idrest =  "_" | alnum
 
   newline     =  "\n"+

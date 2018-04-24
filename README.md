@@ -5,7 +5,7 @@
 Pycante is the world’s hottest programming language, taking inspiration from the functional capabilities of Javascript and blending Python to bring the user the most intuitive, pleasing experience. Boasting dictionary capabilities, and both static typing and scoping, Pycante is the future of learnable, readable, and reusable code.
 
 ## Features
-* Type inference: uses what to find out the type of a variable for example, what(TYPE)
+* Variable declaration type inference
 * Static typing
 * Static scoping
 * Strong typing
@@ -13,43 +13,42 @@ Pycante is the world’s hottest programming language, taking inspiration from t
 * String Interpolation
 * For loops, while loops, if statements
 * Composition and object orientation
-* Dictionaries
-* Lists
-* Classes
+* Lists, Dictionaries, and Classes
 
 ## Operators
-* Additive: +
-* Subtraction: -
+* Additive:       +
+* Subtraction:    -
 * Multiplication: *
-* Exponential: **
-* Relational: <, >, >=, <=, ==, !=
-* Boolean: &, |
-* Floor: //
-* Modulo: %
-* Increment/Decrement: a++, a--
-* Warning: 🔥
-* Function: 🌶️
-* Class: ♨️
+* Exponential:    **
+* Division:       /
+* Floor:          //
+* Relational:     <, >, >=, <=, ==, !=
+* Boolean:        &, |
+* Modulo:         %
+* Increment/Decrement:  ++a, --a
+* Warning:       🔥
+* Function:      🌶️
+* Class:         ♨️
 
 ## Data Types:
 * Number: 4, 27.3, -13.0182
 * Boolean: true, false
-* String: “Spicy” , “Un poco picante”, “\“What does a nosy pepper do?\”\n\“It gets Jalepeño business!\”
+* String: “Spicy”, “Un poco picante”, “\“What does a nosy pepper do?\”\n\“It gets Jalepeño business!\”
 * Comments: ~ Single Line Comment; |- Multi line comment -|
 
 ## Examples
-Variable declaration.
+Variable declaration:
 
 ```
-let x = 12
+let x = 12         ~ Number declaration
 
-let y = 10
+let str = "Hello"  ~ String declaration
 
-let z = 0
+let z = false      ~ Boolean declaration
 ```
 
 
-Function declarations
+Function declarations:
 
 ```
 🌶️ add(x, y)
@@ -58,14 +57,8 @@ Function declarations
 end
 ```
 
-ٍStrings
 
-```
-let str = "Hello"
-```
-
-
-Expressions
+Expressions:
 
 ```
 let addition = 10 + 20
@@ -74,50 +67,50 @@ let multiplication = 10 * 12
 
 ```
 
-If statement
+If statement:
 
 ```
 let x = 10
 let y = 20
-if (x < 20)
-    ~Do something
+if (x < y)
+    x = x + 10
 end
 ```
 
-If else
+If else:
 
 ```
 let x = 10
 let y = 20
-if (x < 20)
-    ~Do something
- else
-    ~ Do something else.
-    end
+if (x < y)
+    print: x is less than y  ~ This statement is executed.
+else
+    print: x is not less than y
 end
 ```
 
-For loop
+For loop:
 
 
 ```
-let array = [1, 2, 3, 4]
+let list = [1, 2, 3, 4]
 
-for (let index = 0; index < 4; index++ )
-        ~Do something.
+for (let index = 0; index < 4; ++index )
+    print: list[index]
 end
 ```
 
 
-While Loop
+While Loop:
 
 
 ```
-let array = [1, 2, 3, 4]
+let list = ["one", "two", "three", "four"]
 
 let index = 0
 while (index < 4)
-        ~Do something.
+    print: list[index]
+    ++index
 end
 ```
 
@@ -125,59 +118,40 @@ Printing:
 
 ```
 let x = 10
+print: x     ~ Prints "10"
 
-print : 10
-let string = "hello"
-
-print : hello
-
-~ This is an error
-
-let number
-
-print : number
-    🔥: 'number' is not initialized.  
+print: hello ~ Prints "hello"
 
 ```
 
-Type Inference: what() function is used to infer the type of something.
+Type Inference: The what(id) function is used to infer the type of a variable.
 
 ```
 let x = 10
-
-what(x)
-    number
+what(x)      ~ returns "number"
 
 let str = "Hello"
-
-what(str)
-    string
+what(str)    ~ returns "string"
 
 let isTrue = true
-
-what(isTrue)
-    boolean
-
-let something
-
-what(something)
-    🔥: 'something' does not have a type
+what(isTrue) ~ returns "bool"
 ```
 
-Example of Pycante Dictionaries
+Pycante Dictionaries:
 
 ```
 webster = aardvark: 1,
-    acapella: 27,
-    pycante: 469,
-    spice: 763.
+    acapella: "song w/o instruments",
+    pycante: "The HOTTEST programming language",
+    spicy: true.
 ```
 
-Example of Pycante Classes
+Pycante Classes:
 
 ```
 ♨️ Pepper
     🌶️ f(self)
         return 'spice is nice'
+    end
 end
 ```
