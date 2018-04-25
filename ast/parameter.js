@@ -1,13 +1,21 @@
 module.exports = class Parameter {
-  constructor(id) {
-    this.id = id;
+  constructor(id, type) {
+    Object.assign(this, { id, type });
+  }
+
+  get isRequired() {
+    return this.type === null;
   }
 
   analyze(context) {
-    this.analyze(context);
+    if (this.type) {
+      this.type.analyze();
+    }
+    context.add(this);
   }
 
   optimize() {
+    this.type = this.type.optimize();
     return this;
   }
 };

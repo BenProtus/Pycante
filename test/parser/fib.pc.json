@@ -51,9 +51,8 @@
         "id": "fib",
         "params": [
           {
-            "id": {
-              "id": "n"
-            }
+            "id": "n",
+            "type": "Number"
           }
         ],
         "type": "Number"

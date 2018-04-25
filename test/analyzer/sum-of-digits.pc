@@ -1,0 +1,11 @@
+🌶 sum_of_digits(n: Number) Number
+    if (n < 0)
+        return sum_of_digits(-n)
+    else if (n < 10)
+        return n
+    else
+        return sum_of_digits(n / 10) + (n % 10)
+    end
+end
+
+print(sum_of_digits(n: 8835299))

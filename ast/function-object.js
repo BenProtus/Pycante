@@ -1,6 +1,8 @@
 module.exports = class FunctionObject {
   constructor(id, params, type, body, Return) {
-    Object.assign(this, { id, params, type, body, Return });
+    Object.assign(this, {
+      id, params, type, body, Return,
+    });
   }
 
   // Functions like print and sqrt which are pre-defined are known as

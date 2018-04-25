@@ -20,7 +20,6 @@ const WhatExpression = require('../ast/what-expression');
 const FuncDec = require('../ast/function-declaration');
 const BinaryExpression = require('../ast/binary-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
-const Params = require('../ast/parameter');
 const Param = require('../ast/parameter');
 const BoolLiteral = require('../ast/boolean-literal');
 const NumberLiteral = require('../ast/numeric-literal');
@@ -51,7 +50,6 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     return new FuncDec(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
   },
 
-  Params(param1, _, param2) { return new Params(param1.ast(), ...param2.ast()); },
   Param(id, _, type) { return new Param(id.ast(), type.ast()); },
 
   Exp_or(left, op, right) {
