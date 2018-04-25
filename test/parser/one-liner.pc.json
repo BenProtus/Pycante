@@ -1,9 +1,7 @@
 {
   "statements": [
     {
-      "printValue": {
-        "value": 42
-      }
+      "printValue": "42"
     }
   ]
 }

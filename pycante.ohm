@@ -66,7 +66,7 @@ Pycante {
   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
   WhileStatement = "while" Test Statement* "end"
   IfStatement    = "if" Test Statement* ("else if" Test Statement*)* ("else" Statement*)? "end"
-  PrintStatement = "print" ":" (StringLiteral | id)  -- print
+  PrintStatement = "print:" (StringLiteral | Exp)
   Test           = "(" Exp ")"
 
   NumberLiteral  = digit+

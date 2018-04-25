@@ -10,28 +10,28 @@ const DecrementExp = require('../ast/decrement-expression');
 const DecrementStat = require('../ast/decrement-statement');
 
 const VarDec = require('../ast/variable-declaration');
-const PrintStatement = require('../ast/print-statement');
-const AssignmentStatement = require('../ast/assignment-statement');
-const ClassDec = require('../ast/class-declaration');
-const ReturnStatement = require('../ast/return-statement');
-const IfStatement = require('../ast/if-statement');
-const WhileStatement = require('../ast/while-statement');
-const WhatExpression = require('../ast/what-expression');
 const FuncDec = require('../ast/function-declaration');
-const BinaryExpression = require('../ast/binary-expression');
-const SubscriptedExpression = require('../ast/subscripted-expression');
+const ClassDec = require('../ast/class-declaration');
 const Param = require('../ast/parameter');
-const BoolLiteral = require('../ast/boolean-literal');
-const NumberLiteral = require('../ast/numeric-literal');
-const StringLiteral = require('../ast/string-literal');
-const ForStatement = require('../ast/for-loop');
-const NamedType = require('../ast/NamedType');
+const BinaryExpression = require('../ast/binary-expression');
 const MethodCall = require('../ast/method-call');
-const ListExpression = require('../ast/list-expression');
-const IdExpression = require('../ast/id-expression');
+const SubscriptedExpression = require('../ast/subscripted-expression');
+const NamedType = require('../ast/NamedType');
 const FunctionCall = require('../ast/function-call');
+const AssignmentStatement = require('../ast/assignment-statement');
+const ReturnStatement = require('../ast/return-statement');
+const WhatExpression = require('../ast/what-expression');
+const ListExpression = require('../ast/list-expression');
 const DictionaryExpression = require('../ast/dictionary-expression');
 const DictTerm = require('../ast/dict-term');
+const ForStatement = require('../ast/for-loop');
+const WhileStatement = require('../ast/while-statement');
+const IfStatement = require('../ast/if-statement');
+const PrintStatement = require('../ast/print-statement');
+const NumberLiteral = require('../ast/numeric-literal');
+const StringLiteral = require('../ast/string-literal');
+const BoolLiteral = require('../ast/boolean-literal');
+const IdExpression = require('../ast/id-expression');
 const Case = require('../ast/case');
 
 function unpack(a) {
@@ -110,7 +110,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     const cases = tests.map((test, index) => new Case(test, bodies[index]));
     return new IfStatement(cases, unpack(lastSuite.ast()));
   },
-  PrintStatement(_1, _2, exp) { return new PrintStatement(exp.ast()); },
+  PrintStatement(_, string) { return new PrintStatement(string.sourceString); },
   Test(_1, exp, _2) { return exp.ast(); },
 
   BoolLiteral(_) { return new BoolLiteral(!!this.sourceString); },
