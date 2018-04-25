@@ -2,17 +2,63 @@
   "statements": [
     {
       "function": {
-        "body": "Number",
+        "Return": "a",
+        "body": [
+          {
+            "ids": "a",
+            "initializers": {
+              "value": 5
+            }
+          },
+          {
+            "ids": "b",
+            "initializers": {
+              "left": "a",
+              "op": "+",
+              "right": {
+                "value": 5
+              }
+            }
+          },
+          {
+            "body": [
+              {
+                "sources": {
+                  "left": "b",
+                  "op": "-",
+                  "right": {
+                    "value": 1
+                  }
+                },
+                "targets": "b"
+              },
+              {
+                "sources": {
+                  "left": "a",
+                  "op": "*",
+                  "right": "b"
+                },
+                "targets": "a"
+              }
+            ],
+            "test": {
+              "left": "b",
+              "op": ">",
+              "right": "n"
+            }
+          }
+        ],
         "id": "fib",
         "params": [
           {
             "id": {
-              "Type": "Number",
               "id": "n"
             }
           }
-        ]
-      }
+        ],
+        "type": "Number"
+      },
+      "id": "fib"
     }
   ]
 }
