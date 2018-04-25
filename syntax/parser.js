@@ -52,8 +52,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     return new FuncDec(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
   },
 
-  Params(param1, _1, param2) { return new Params(param1.ast(), ...param2.ast()); },
-  Param(id, _1, type) { return new Param(id.ast(), type.ast()); },
+  Params(param1, _, param2) { return new Params(param1.ast(), ...param2.ast()); },
+  Param(id, _, type) { return new Param(id.ast(), type.ast()); },
 
   Exp_or(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
@@ -87,14 +87,14 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Type(type) { return type.ast(); },
   FunctionCall(id, _1, exps, _2) { return new FunctionCall(id.ast(), exps.ast()); },
   Assignment(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
-  ClassDec(_1, id, vars, FuncDec, _2) {
-    return new ClassDec(id.ast(), vars.ast(), FuncDec.ast());
+  ClassDec(_1, id, vars, FunDec, _2) {
+    return new ClassDec(id.ast(), vars.ast(), FunDec.ast());
   },
-  Return_returnExpression(_1, exp) { return exp.ast(); },
-  Return_returnNothing(_1) {},
+  Return_returnExpression(_, exp) { return exp.ast(); },
+  Return_returnNothing(_) {},
   Return_implicitReturnExpression(exp) { return exp.ast(); },
-  WhatExp(_1, exp) { return exp.ast(); },
-  Exps(first, _1, rest) { return [first.ast(), ...rest.ast()]; },
+  WhatExp(_1, _2, exp, _3) { return exp.ast(); },
+  Exps(first, _, rest) { return [first.ast(), ...rest.ast()]; },
   List(_1, exp, _2) { return new ListExpression([...exp.ast()]); },
   // need to allow Dictionary to have many possible sets...
   Dictionary(t, _1, ts, _2) {
