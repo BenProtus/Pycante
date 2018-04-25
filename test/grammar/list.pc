@@ -1,6 +1,6 @@
 let x = [12, 12]
 
-let  y = [true, false, true]
+let y = [true, false, true]
 
 let z = ["A", "B", "C"]
 
@@ -11,6 +11,6 @@ let z = ["A", "B", "C"]
       sum = sum + list[i]
     end
     return sum
-  end
+end
 
-add(x)
+add(x[0])

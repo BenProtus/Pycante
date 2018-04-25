@@ -1,2 +1,2 @@
 let pepper = "Habeñero"
-print:pepper
+print: pepper

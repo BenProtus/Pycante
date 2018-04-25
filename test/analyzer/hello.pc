@@ -1,2 +1,2 @@
-print:Hello there!
-print:General Kenobi!
+print: "Hello there!"
+print: "General Kenobi!"

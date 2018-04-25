@@ -8,4 +8,4 @@
     end
 end
 
-print(sum_of_digits(n: 8835299))
+print: sum_of_digits(8835299)

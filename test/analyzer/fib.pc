@@ -8,5 +8,5 @@
     return a
 end
 
-print:fib(5)
-print:fib(10)
+print: fib(5)
+print: fib(10)
