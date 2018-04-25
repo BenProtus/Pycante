@@ -1,12 +1,13 @@
 const Context = require('../semantics/context');
+
 module.exports = class Call {
   constructor(id, args) {
     this.id = id;
     this.args = args;
   }
 
-  analyze(context){
-  	if (!context.hasBeenDeclared(this.id)) {
+  analyze(context) {
+    if (!context.hasBeenDeclared(this.id)) {
       throw new Error(`Function ${this.id} has not been declared`);
     }
     const functionDec = context.lookup(this.id);
@@ -20,5 +21,4 @@ module.exports = class Call {
     this.args.optimize();
     return this;
   }
-
 };

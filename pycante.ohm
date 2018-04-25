@@ -1,67 +1,67 @@
 Pycante {
-  Program     = Statement*
-  Statement   = Assignment
-              | increment Exp7    -- inc
-              | decrement Exp7    -- dec
-              | FunctionCall
-              | Declaration
-              | PrintStatement
-              | Loop
-              | IfStatement
-  Declaration = VarDec
-              | FunDeclaration
-              | ClassDec
+  Program        = Statement*
+  Statement      = Assignment
+                 | increment Exp7    -- inc
+                 | decrement Exp7    -- dec
+                 | FunctionCall
+                 | Declaration
+                 | PrintStatement
+                 | Loop
+                 | IfStatement
+  Declaration    = VarDec
+                 | FuncDec
+                 | ClassDec
 
   VarDec         = "let" id "=" Exp
-  FunDeclaration = "🌶" id "(" Params? ")" Type Statement* Return "end"
+  FuncDec        = "🌶" id "(" Params? ")" Type Statement* Return "end"
+  ClassDec       = "♨️" id VarDec* FuncDec* "end"
   Params         = Param ("," Param)*
   Param          = id ":" Type
 
-  Exp  = Exp "or" Exp1       -- or
-       | Exp1
-  Exp1 = Exp1 "and" Exp2     -- and
-       | Exp2
-  Exp2 = Exp2 relop Exp3     -- binary
-       | Exp3
-  Exp3 = Exp3 addop Exp4     -- binary
-       | Exp4
-  Exp4 = Exp4 mulop Exp5     -- binary
-       | Exp5
-  Exp5 = Exp5 "**" Exp6      -- binary
-       | Exp6
-  Exp6 = increment Exp7      -- inc
-       | decrement Exp7      -- dec
-       | Exp7
-  Exp7 = Exp7 "." FunctionCall    -- methodCall
-       | Exp7 "[" Exp "]"         -- subscripted
-       | NumberLiteral
-       | StringLiteral
-       | BoolLiteral
-       | id
-       | FunctionCall
-       | List
-       | Dictionary
-       | WhatExp
-       | "(" Exp ")"              -- parens
-  Exps = Exp ("," Exp)*
+  Exp            = Exp "or" Exp1           -- or
+                 | Exp1
+  Exp1           = Exp1 "and" Exp2         -- and
+                 | Exp2
+  Exp2           = Exp2 relop Exp3         -- binary
+                 | Exp3
+  Exp3           = Exp3 addop Exp4         -- binary
+                 | Exp4
+  Exp4           = Exp4 mulop Exp5         -- binary
+                 | Exp5
+  Exp5           = Exp5 "**" Exp6          -- binary
+                 | Exp6
+  Exp6           = increment Exp7          -- inc
+                 | decrement Exp7          -- dec
+                 | Exp7
+  Exp7           = Exp7 "." FunctionCall   -- methodCall
+                 | Exp7 "[" Exp "]"        -- subscripted
+                 | NumberLiteral
+                 | StringLiteral
+                 | BoolLiteral
+                 | id
+                 | FunctionCall
+                 | List
+                 | Dictionary
+                 | WhatExp
+                 | "(" Exp ")"             -- parens
+  Exps           = Exp ("," Exp)*
 
-  Type         = "Boolean" | "Number" | "String"
-  keyword      = ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
-  FunctionCall = id "(" Exps? ")"
+  Type           = "Boolean" | "Number" | "String"
+  keyword        = ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
+  FunctionCall   = id "(" Exps? ")"
 
-  Assignment = id "=" Exp
-  ClassDec   = "♨️" id VarDec* FunDeclaration* "end"
+  Assignment     = id "=" Exp
 
-  Return  = "return" Exp         -- returnExpression
-          | "return"             -- returnNothing
-          | Exp                  -- implicitReturnExpression
-  WhatExp = "what" Exp
-  List    = "[" ListOf<Exp, ","> "]"
+  Return         = "return" Exp         -- returnExpression
+                 | "return"             -- returnNothing
+                 | Exp                  -- implicitReturnExpression
+  WhatExp        = "what" "(" Exp ")"
+  List           = "[" ListOf<Exp, ","> "]"
 
-  Dictionary = DictTerm ("," DictTerm)* "."
-  DictTerm   = id ":" Exp
+  Dictionary     = DictTerm ("," DictTerm)* "."
+  DictTerm       = id ":" Exp
 
-  Loop = ForStatement | WhileStatement
+  Loop           = ForStatement | WhileStatement
 
   ForStatement   = "for" "(" VarDec ";" Exp ";" Exp ")" Statement* "end"
   WhileStatement = "while" Test Statement* "end"
@@ -73,18 +73,18 @@ Pycante {
   StringLiteral  = "\"" (~"\""any)* "\""
   BoolLiteral    = "false" | "true"
 
-  addop     = "+" | "-"
-  mulop     = "*"| "%" | "/" | "//"
-  relop     = "<=" | ">=" | ">" | "<" | "==" | "!="
-  increment = "++"
-  decrement = "--"
+  addop          = "+" | "-"
+  mulop          = "*"| "%" | "/" | "//"
+  relop          = "<=" | ">=" | ">" | "<" | "==" | "!="
+  increment      = "++"
+  decrement      = "--"
 
-  id     = ~keyword ("_" | lower) idrest*
-  idrest =  "_" | alnum
+  id             = ~keyword ("_" | lower) idrest*
+  idrest         =  "_" | alnum
 
-  newline     =  "\n"+
-  space      :=  " " | "\t" | "\n" | comment
-  comment     = "~" (~"\n" any)*  -- comment
-              | multiLineComment
-  multiLineComment   = "|-" (~"-|" any)* "-|" -- multiLineComment
+  newline        =  "\n"+
+  space         :=  " " | "\t" | "\n" | comment
+  comment        = "~" (~"\n" any)*  -- comment
+                 | multiLineComment
+  multiLineComment = "|-" (~"-|" any)* "-|" -- multiLineComment
 }

@@ -17,7 +17,7 @@ const ReturnStatement = require('../ast/return-statement');
 const IfStatement = require('../ast/if-statement');
 const WhileStatement = require('../ast/while-statement');
 const WhatExpression = require('../ast/what-expression');
-const FunDeclaration = require('../ast/function-declaration');
+const FuncDec = require('../ast/function-declaration');
 const BinaryExpression = require('../ast/binary-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
 const Params = require('../ast/parameter');
@@ -48,8 +48,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Statement_inc(op, exp) { return new IncrementStat(op.sourceString, exp.ast()); },
   Statement_dec(op, exp) { return new DecrementStat(op.sourceString, exp.ast()); },
   VarDec(_1, id, _2, exp) { return new VarDec(id.ast(), exp.ast()); },
-  FunDeclaration(_1, id, _2, params, _3, type, statement, Return, _4) {
-    return new FunDeclaration(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
+  FuncDec(_1, id, _2, params, _3, type, statement, Return, _4) {
+    return new FuncDec(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
   },
 
   Params(param1, _1, param2) { return new Params(param1.ast(), ...param2.ast()); },
