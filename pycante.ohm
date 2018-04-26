@@ -38,8 +38,8 @@ Pycante {
                  | NumberLiteral
                  | StringLiteral
                  | BoolLiteral
-                 | id
                  | FunctionCall
+                 | id
                  | List
                  | Dictionary
                  | WhatExp
