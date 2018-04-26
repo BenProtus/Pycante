@@ -47,7 +47,8 @@ Pycante {
   Exps           = Exp ("," Exp)*
 
   Type           = "Boolean" | "Number" | "String"
-  keyword        = ("let" | "♨️" | "🌶" | "for" | "while" |  "return" | "end" | "if" | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
+  keyword        = ("let" | "♨️" | "🌶" | "for" | "while" | "return" | "end" | "if"
+                 | "else" | "else if" | "what" | "true" | "false" | "print") ~idrest
   FunctionCall   = id "(" Exps? ")"
 
   Assignment     = id "=" Exp
