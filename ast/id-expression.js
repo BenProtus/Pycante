@@ -2,11 +2,12 @@ module.exports = class IdentifierExpression {
   constructor(id) {
     this.id = id;
   }
+
   analyze(context) {
-    if (!context.hasBeenDeclared(this.id)) {
-      throw new Error(`${this.id} has not been declared.`);
-    }
-    return context.lookup(this.id).type;
+    // if (!context.hasBeenDeclared(this.id)) {
+    //   throw new Error(`${this.id} has not been declared.`);
+    // }
+    this.referent = context.lookup(this.id);
   }
 
   toString() {
