@@ -1,5 +1,5 @@
 {
   "statements": [
-    { "printValue": "hello" }
+    { "printValue": "\"hello\"" }
   ]
 }
