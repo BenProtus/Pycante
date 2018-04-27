@@ -45,12 +45,17 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
 
   Statement_inc(op, exp) { return new IncrementStat(op.sourceString, exp.ast()); },
   Statement_dec(op, exp) { return new DecrementStat(op.sourceString, exp.ast()); },
-  VarDec(_1, id, _2, exp) { return new VarDec(id.ast(), exp.ast()); },
+  VarDec(_1, id, _2, exp) { return new VarDec(id.sourceString, exp.ast()); },
   FuncDec(_1, id, _2, params, _3, type, statement, Return, _4) {
-    return new FuncDec(id.ast(), params.ast(), type.ast(), statement.ast(), Return.ast());
+    return new FuncDec(
+      id.sourceString, params.ast(),
+      NamedType.withName(type.sourceString),
+      statement.ast(),
+      Return.ast(),
+    );
   },
 
-  Param(id, _, type) { return new Param(id.ast(), type.ast()); },
+  Param(id, _, type) { return new Param(id.sourceString, NamedType.withName(type.sourceString)); },
 
   Exp_or(left, op, right) {
     return new BinaryExpression(left.ast(), op.ast(), right.ast());
@@ -77,15 +82,17 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     return new DecrementExp(op.ast(), exp.ast());
   },
   Exp7_parens(_1, exp, _2) { return exp.ast(); },
+  Exp7_id(id) { return new IdExpression(id.sourceString); },
   Exp7_subscripted(list, _1, subscript, _2) {
     return new SubscriptedExpression(list.ast(), subscript.ast());
   },
 
-  Type(type) { return type.ast(); },
-  FunctionCall(id, _1, exps, _2) { return new FunctionCall(id.ast(), exps.ast()); },
-  Assignment(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
+  FunctionCall(id, _1, exps, _2) { return new FunctionCall(id.sourceString, exps.ast()); },
+  Assignment(v, _, e) {
+    return new AssignmentStatement(new IdExpression(v.sourceString), e.ast());
+  },
   ClassDec(_1, id, vars, FunDec, _2) {
-    return new ClassDec(id.ast(), vars.ast(), FunDec.ast());
+    return new ClassDec(id.sourceString, vars.ast(), FunDec.ast());
   },
   Return_returnExpression(_, exp) { return exp.ast(); },
   Return_returnNothing(_) {},

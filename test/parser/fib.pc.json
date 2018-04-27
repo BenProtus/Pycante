@@ -2,18 +2,18 @@
   "statements": [
     {
       "function": {
-        "Return": "a",
+        "Return": {"id": "a"},
         "body": [
           {
-            "ids": "a",
-            "initializers": {
+            "id": "a",
+            "initializer": {
               "value": 5
             }
           },
           {
-            "ids": "b",
-            "initializers": {
-              "left": "a",
+            "id": "b",
+            "initializer": {
+              "left": {"id": "a"},
               "op": "+",
               "right": {
                 "value": 5
@@ -23,28 +23,28 @@
           {
             "body": [
               {
-                "sources": {
-                  "left": "b",
+                "source": {
+                  "left": {"id": "b"},
                   "op": "-",
                   "right": {
                     "value": 1
                   }
                 },
-                "targets": "b"
+                "target": {"id": "b"}
               },
               {
-                "sources": {
-                  "left": "a",
+                "source": {
+                  "left": {"id": "a"},
                   "op": "*",
-                  "right": "b"
+                  "right": {"id": "b"}
                 },
-                "targets": "a"
+                "target": {"id": "a"}
               }
             ],
             "test": {
-              "left": "b",
+              "left": {"id": "b"},
               "op": ">",
-              "right": "n"
+              "right": {"id": "n"}
             }
           }
         ],
@@ -52,10 +52,10 @@
         "params": [
           {
             "id": "n",
-            "type": "Number"
+            "type": {"name": "number"}
           }
         ],
-        "type": "Number"
+        "type": {"name": "number"}
       },
       "id": "fib"
     }

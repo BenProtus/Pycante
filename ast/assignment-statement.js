@@ -13,7 +13,7 @@ module.exports = class AssignmentStatement {
 
   optimize() {
     this.source.optimize();
-    this.target.optimize( );
+    this.target.optimize();
     // Suggested: Turn self-assignments without side-effects to null
     return this;
   }

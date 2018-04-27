@@ -1,4 +1,4 @@
-module.exports = class IdentifierExpression {
+module.exports = class IdExpression {
   constructor(id) {
     this.id = id;
   }
