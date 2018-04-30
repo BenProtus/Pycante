@@ -7,6 +7,5 @@
     end
     return a
 end
-
-print: fib(5)
-print: fib(10)
+let x = fib(5)
+~print: fib(10)
