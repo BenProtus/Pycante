@@ -14,7 +14,12 @@ const Parameter = require('../ast/parameter');
 
 class Context {
   constructor({ parent = null, currentFunction = null, inLoop = false } = {}) {
-    Object.assign(this, { parent, currentFunction, inLoop, declarations: Object.create(null) });
+    Object.assign(this, {
+      parent,
+      currentFunction,
+      inLoop,
+      declarations: Object.create(null),
+    });
   }
 
   createChildContextForFunctionBody(currentFunction) {
@@ -60,6 +65,12 @@ class Context {
     } else {
       return this.parent.lookup(id);
     }
+  }
+
+  hasBeenDeclared(id) {
+    if (id in this.declarations) { return true; }
+    if (this.parent) { return this.parent.hasBeenDeclared(id); }
+    return false;
   }
 
   assertInFunction(message) {
