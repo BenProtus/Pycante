@@ -1,0 +1,7 @@
+♨️ Point
+    let a = 0
+    let b = 0
+    🌶️ constructor(x : Number, y : Number)
+        return [x, y]
+    end
+end
