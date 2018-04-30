@@ -1,22 +1,12 @@
 const NamedType = require('./NamedType');
 
 module.exports = class PrintStatement {
-  constructor(printValue) {
-    this.printValue = printValue;
+  constructor(expression) {
+    this.expression = expression;
   }
 
   analyze(context) {
-    if (context.hasBeenDeclared(this.printValue)) {
-      const val = context.lookup(this.printValue);
-      if (typeof (val.id) !== 'string') {
-        throw new Error(`🔥 WARNING🔥
-          Type Error: ${this.printValue} is not a String`);
-      }
-    } else if (!(this.printValue.charAt(0) === '"'
-    && this.printValue.charAt(this.printValue.length - 1) === '"')) {
-      throw new Error(`🔥 WARNING🔥
-        Undeclared Variable: ${this.printValue} has not been declared`);
-    }
+    this.expression.analyze(context);
   }
 
   optimize() {

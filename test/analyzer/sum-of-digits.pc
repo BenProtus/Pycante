@@ -1,11 +1,13 @@
 🌶 sum_of_digits(n: Number) Number
+    let answer = 0
     if (n < 0)
-        return sum_of_digits(-n)
+        answer = sum_of_digits(0 - n)
     else if (n < 10)
-        return n
+        answer = n
     else
-        return sum_of_digits(n / 10) + (n % 10)
+        answer = sum_of_digits(n / 10) + (n % 10)
     end
+    return answer
 end
 
 print: sum_of_digits(8835299)

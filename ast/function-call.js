@@ -1,5 +1,3 @@
-const Context = require('../semantics/context');
-
 module.exports = class FunctionCall {
   constructor(id, args) {
     this.id = id;
@@ -9,7 +7,6 @@ module.exports = class FunctionCall {
   analyze(context) {
     if (context.hasBeenDeclared(this.id)) {
       const func = context.lookup(this.id);
-      func.analyze(context);
       this.type = func.Return;
 
       if (this.args.length !== func.params.length) {

@@ -1,7 +1,7 @@
 {
   "statements": [
     {
-      "printValue": "\"42\""
+      "expression": { "value" : "\"42\"" }
     }
   ]
 }
