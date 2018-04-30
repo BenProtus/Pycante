@@ -8,4 +8,4 @@
     return a
 end
 let x = fib(5)
-~print: fib(10)
+print: fib(10)
