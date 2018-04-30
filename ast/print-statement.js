@@ -8,7 +8,7 @@ module.exports = class PrintStatement {
   analyze(context) {
     if (context.hasBeenDeclared(this.printValue)) {
       const val = context.lookup(this.printValue);
-      if (val.type !== NamedType.STRING) {
+      if (typeof(val.id) !== NamedType.STRING.name) {
         throw new Error(`🔥 WARNING🔥
           Type Error: ${this.printValue} is not a String`);
       }
