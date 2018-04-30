@@ -51,7 +51,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
       id.sourceString, params.ast(),
       NamedType.withName(type.sourceString),
       statement.ast(),
-      Return.ast(),
+      Return.ast()
     );
   },
 
