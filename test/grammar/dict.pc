@@ -1,1 +1,1 @@
-let dict  =  x:10
+let dict  =  x:10, y:12, z:20.
