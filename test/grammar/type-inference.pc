@@ -1,8 +1,0 @@
-let x = what (12)
-
-
-x = what (true)
-
-x = what((12+2))
-
-x = what ((128127 % 12)/12)

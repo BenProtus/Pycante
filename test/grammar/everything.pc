@@ -1,14 +1,115 @@
-let xxx = 12
+|- The purpose of this example program is to just throw every syntactic
+ construct of the Pycante in one file. It's a test that checks
+ that this file can be matched against the grammar.
+-|
 
-let y = 10 
+~arithmetic expression
+let add = 10 + 12
 
-let z = 12 
+let mult = 12 * 12
 
-let str = "Hello"
+let sub = 20 - 50
 
-let isTrue = true 
-
-let isFalse = false 
+let pow = 12 ** 2
 
 let divide = 12 / 12
 
+~classes
+♨️ x
+    let y = 0
+end
+
+~variable declaration
+let x = 12
+
+let str = "Hello"
+
+let isTrue = true
+
+let isFalse = false
+
+~ func declaration
+🌶 addFifteen (a: Number) Number
+    let b = 15
+    return a + b
+end
+  x = addFifteen(x)
+
+~conditional if
+if (10 > 8)
+    let u = 20
+    if (19 == 20)
+        let y = 20
+        let x = "Hello"
+    else if (true == true)
+        let v = 50
+    end
+else
+    let str = "String"
+end
+
+~loops
+x = 0
+while (x > 10)
+    let id = 60
+    if (id < 6)
+        ++id
+    end
+end
+
+
+for (let i = 10; i < 10; ++i)
+    if (20 < 10)
+        ++i
+    end
+end
+
+~lists
+
+let x = [12, 12]
+
+let y = [true, false, true]
+
+let z = ["A", "B", "C"]
+
+
+🌶 add (list: Number) Number
+    let sum  = 0
+    while (i > 2)
+      sum = sum + list[i]
+    end
+    return sum
+end
+
+add(x[0])
+
+~return
+
+🌶 average (x: Number) Number
+    let result = 50/x
+    return result
+end
+
+~type inference
+let x = what (12)
+
+x = what (true)
+
+x = what((12+2))
+
+x = what ((128127 % 12)/12)
+
+~var dec
+let xxx = 12
+
+let y = 10
+
+let z = 12
+
+let str = "Hello"
+
+let isTrue = true
+
+let isFalse = false
+
+let divide = 12 / 12

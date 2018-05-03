@@ -1,4 +1,0 @@
-🌶 addFifteen (a: Number) Number
-    let b = 15
-    return a + b
-end
