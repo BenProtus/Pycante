@@ -119,7 +119,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Test(_1, exp, _2) { return exp.ast(); },
 
   BoolLiteral(_) { return new BoolLiteral(this.sourceString === 'true'); },
-  NumberLiteral(_) { return new NumberLiteral(+this.sourceString); },
+  NumberLiteral(_1, _2, _3) { return new NumberLiteral(+this.sourceString); },
   StringLiteral(_1, chars, _6) { return new StringLiteral(this.sourceString); },
 
   NonemptyListOf(first, _, rest) { return [first.ast(), ...rest.ast()]; },

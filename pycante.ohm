@@ -70,7 +70,7 @@ Pycante {
   PrintStatement = "print:" (StringLiteral | Exp)
   Test           = "(" Exp ")"
 
-  NumberLiteral  = digit+
+  NumberLiteral  = digit+ ("." digit+)?
   StringLiteral  = "\"" (~"\""any)* "\""
   BoolLiteral    = "false" | "true"
 
