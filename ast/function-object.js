@@ -19,17 +19,17 @@ module.exports = class FunctionObject {
 
     // Make sure all required parameters come before optional ones, and
     // gather the names up into sets for quick lookup.
-    this.requiredParameterNames = new Set();
-    this.allParameterNames = new Set();
-    this.params.forEach((p) => {
-      this.allParameterNames.add(p.id);
-      if (p.isRequired) {
-        this.requiredParameterNames.add(p.id);
-        if (this.requiredParameterNames.size < this.allParameterNames.size) {
-          throw new Error('Required parameter cannot appear after an optional parameter');
-        }
-      }
-    });
+    // this.requiredParameterNames = new Set();
+    // this.allParameterNames = new Set();
+    // this.params.forEach((p) => {
+    //   this.allParameterNames.add(p.id);
+    //   if (p.isRequired) {
+    //     this.requiredParameterNames.add(p.id);
+    //     if (this.requiredParameterNames.size < this.allParameterNames.size) {
+    //       throw new Error('Required parameter cannot appear after an optional parameter');
+    //     }
+    //   }
+    // });
 
     // Now we analyze the body with the local context. Note that recursion is
     // allowed, because we've already inserted the function itself into the
