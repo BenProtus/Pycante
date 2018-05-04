@@ -1,7 +1,7 @@
 module.exports = class FunctionObject {
-  constructor(id, params, type, body, Return) {
+  constructor(id, params, type, body) {
     Object.assign(this, {
-      id, params, type, body, Return,
+      id, params, type, body,
     });
   }
 

@@ -49,7 +49,9 @@ function genStatementList(statements) {
 }
 
 function makeOp(op) {
-  return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
+  return {
+    not: '!', and: '&&', or: '||', '==': '===', '!=': '!==',
+  }[op] || op;
 }
 
 // jsName(e) takes any Pycante object with an id property, such as a
@@ -126,7 +128,7 @@ Object.assign(ForStatement.prototype, {
 
 Object.assign(FunctionCall.prototype, {
   gen() {
-    const fun = this.callee.referent;
+    const fun = this.callee;
     const params = {};
     const args = Array(this.args.length).fill(undefined);
     fun.params.forEach((p, i) => { params[p.id] = i; });

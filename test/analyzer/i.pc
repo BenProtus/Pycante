@@ -1,5 +1,5 @@
 🌶  f(n: Number) Number
-  1
+  return 1
 end
 
 print: f(100)

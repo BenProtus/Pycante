@@ -8,12 +8,13 @@ Pycante {
                  | PrintStatement
                  | Loop
                  | IfStatement
+                 | Return
   Declaration    = VarDec
                  | FuncDec
                  | ClassDec
 
   VarDec         = "let" id "=" Exp
-  FuncDec        = "🌶" id "(" Params ")" Type Statement* Return "end"
+  FuncDec        = "🌶" id "(" Params ")" Type Statement* "end"
   ClassDec       = "♨️" id VarDec* FuncDec* "end"
   Params         = ListOf<Param, ",">
   Param          = id ":" Type
@@ -55,7 +56,6 @@ Pycante {
 
   Return         = "return" Exp         -- returnExpression
                  | "return"             -- returnNothing
-                 | Exp                  -- implicitReturnExpression
   WhatExp        = "what" "(" Exp ")"
   List           = "[" ListOf<Exp, ","> "]"
 

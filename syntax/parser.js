@@ -46,12 +46,11 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Statement_inc(op, exp) { return new IncrementStat(op.sourceString, exp.ast()); },
   Statement_dec(op, exp) { return new DecrementStat(op.sourceString, exp.ast()); },
   VarDec(_1, id, _2, exp) { return new VarDec(id.sourceString, exp.ast()); },
-  FuncDec(_1, id, _2, params, _3, type, statement, returnExpression, _4) {
+  FuncDec(_1, id, _2, params, _3, type, statement, _4) {
     return new FuncDec(
       id.sourceString, params.ast(),
       NamedType.withName(type.sourceString),
       statement.ast(),
-      returnExpression.ast(),
     );
   },
 
@@ -94,9 +93,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   ClassDec(_1, id, vars, FunDec, _2) {
     return new ClassDec(id.sourceString, vars.ast(), FunDec.ast());
   },
-  Return_returnExpression(_, exp) { return exp.ast(); },
-  Return_returnNothing(_) {},
-  Return_implicitReturnExpression(exp) { return exp.ast(); },
+  Return_returnExpression(_, exp) { return new ReturnStatement(exp.ast()); },
+  Return_returnNothing(_) { return new ReturnStatement(); },
   WhatExp(_1, _2, exp, _3) { return exp.ast(); },
   Exps(first, _, rest) { return [first.ast(), ...rest.ast()]; },
   List(_1, exp, _2) { return new ListExpression([...exp.ast()]); },
