@@ -1,5 +1,3 @@
-const Context = require('../semantics/context');
-
 module.exports = class ForLoop {
   constructor(body, initialization, condition, iterator) {
     this.body = body;
@@ -7,19 +5,19 @@ module.exports = class ForLoop {
     this.condition = condition;
     this.iterator = iterator;
   }
+
   analyze(context) {
-    const innerContext = new Context({
-      parent: context,
-      inLoop: true,
-      inFunction: context.inFunction,
-    });
-    this.initialization.analyze(innerContext);
-    const conditionType = this.condition.analyze(innerContext);
+    console.log(context);
+    const bodyContext = context.createChildContextForLoop();
+    console.log(bodyContext);
+    this.initialization.analyze(bodyContext);
+    const conditionType = this.condition.analyze(bodyContext); // This is undefined, should be a boolean
+    // console.log(conditionType);
     if (!conditionType.isBoolean()) {
       throw new Error('for loop condition must be a boolean.');
     }
-    this.iterator.analyze(innerContext);
-    this.body.analyze(innerContext);
+    this.iterator.analyze(bodyContext);
+    this.body.analyze(bodyContext);
   }
 
   toString() {

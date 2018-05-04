@@ -118,11 +118,11 @@ Object.assign(BooleanLiteral.prototype, {
 });
 
 Object.assign(DecrementExpression.prototype, {
-  gen() { return `${this.operand}--`; },
+  gen() { emit(`${this.operand.gen()}--;`); },
 });
 
 Object.assign(DecrementStatement.prototype, {
-  gen() { return `${this.operand}--`; },
+  gen() { emit(`${this.operand.gen()}--;`); },
 });
 
 // Object.assign(BreakStatement.prototype, {
@@ -185,11 +185,11 @@ Object.assign(IfStatement.prototype, {
 });
 
 Object.assign(IncrementExpression.prototype, {
-  gen() { return `${this.operand}++`; },
+  gen() { emit(`${this.operand}++;`); },
 });
 
 Object.assign(IncrementStatement.prototype, {
-  gen() { return `${this.operand}++`; },
+  gen() { emit(`${this.operand.gen()}++;`); },
 });
 
 Object.assign(NumericLiteral.prototype, {
