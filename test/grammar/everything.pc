@@ -113,3 +113,6 @@ let isTrue = true
 let isFalse = false
 
 let divide = 12 / 12
+
+~dictionaries
+let dictionary = x:3, y:"hello", z:true.
