@@ -15,19 +15,21 @@
 const Context = require('../semantics/context');
 const Program = require('../ast/program');
 const VariableDeclaration = require('../ast/variable-declaration');
-const AssignmentStatement = require('../ast/assignment-statement');
-const ReturnStatement = require('../ast/return-statement');
-const IfStatement = require('../ast/if-statement');
-const WhileStatement = require('../ast/while-statement');
 const FunctionDeclaration = require('../ast/function-declaration');
 const FunctionObject = require('../ast/function-object');
+const Parameter = require('../ast/parameter');
+const FunctionCall = require('../ast/function-call');
+const AssignmentStatement = require('../ast/assignment-statement');
+const ReturnStatement = require('../ast/return-statement');
+const ForStatement = require('../ast/for-loop');
+const WhileStatement = require('../ast/while-statement');
+const IfStatement = require('../ast/if-statement');
 const BinaryExpression = require('../ast/binary-expression');
 const UnaryExpression = require('../ast/unary-expression');
-//const IdentifierExpression = require('../ast/identifier-expression');
-//const SubscriptedExpression = require('../ast/subscripted-expression');
-//const Variable = require('../ast/variable');
-// const Call = require('../ast/call');
-const Parameter = require('../ast/parameter');
+const IdExpression = require('../ast/id-expression');
+const SubscriptedExpression = require('../ast/subscripted-expression');
+const Variable = require('../ast/variable');
+
 // const Argument = require('../ast/argument');
 const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
@@ -50,7 +52,7 @@ function makeOp(op) {
   return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
 
-// jsName(e) takes any PlainScript object with an id property, such as a
+// jsName(e) takes any Pycante object with an id property, such as a
 // Variable, Parameter, or FunctionDeclaration, and produces a JavaScript
 // name by appending a unique indentifying suffix, such as '_1' or '_503'.
 // It uses a cache so it can return the same exact string each time it is
@@ -87,9 +89,9 @@ function generateLibraryFunctions() {
   generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);');
 }
 
-Object.assign(Argument.prototype, {
-  gen() { return this.expression.gen(); },
-});
+// Object.assign(Argument.prototype, {
+//   gen() { return this.expression.gen(); },
+// });
 
 Object.assign(AssignmentStatement.prototype, {
   gen() {
@@ -107,15 +109,23 @@ Object.assign(BooleanLiteral.prototype, {
   gen() { return `${this.value}`; },
 });
 
-Object.assign(BreakStatement.prototype, {
-  gen() { return 'break;'; },
+// Object.assign(BreakStatement.prototype, {
+//   gen() { return 'break;'; },
+// });
+
+// Object.assign(CallStatement.prototype, {
+//   gen() { emit(`${this.call.gen()};`); },
+// });
+
+Object.assign(ForStatement.prototype, {
+  gen() {
+    emit(`for (${this.test.gen()}; ${this.test.gen()}; ${this.test.gen()}) {`);
+    genStatementList(this.body);
+    emit('}');
+  },
 });
 
-Object.assign(CallStatement.prototype, {
-  gen() { emit(`${this.call.gen()};`); },
-});
-
-Object.assign(Call.prototype, {
+Object.assign(FunctionCall.prototype, {
   gen() {
     const fun = this.callee.referent;
     const params = {};
@@ -138,7 +148,7 @@ Object.assign(FunctionObject.prototype, {
   },
 });
 
-Object.assign(IdentifierExpression.prototype, {
+Object.assign(IdExpression.prototype, {
   gen() { return this.referent.gen(); },
 });
 
