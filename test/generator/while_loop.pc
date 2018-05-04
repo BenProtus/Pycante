@@ -1,3 +1,4 @@
+let x = 51
 while (x > 50)
     let id = 60
     if (id < 6)

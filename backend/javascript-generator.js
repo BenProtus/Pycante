@@ -44,13 +44,15 @@ function emit(line) {
 
 function genStatementList(statements) {
   indentLevel += 1;
-  statements.forEach(statement => statement.gen());
+  statements.forEach((statement) => {
+    if (statement !== 'end') { console.log(statement); statement.gen(); }
+  });
   indentLevel -= 1;
 }
 
 function makeOp(op) {
   return {
-    not: '!', and: '&&', or: '||', '==': '===', '!=': '!==',
+    and: '&&', or: '||', '==': '===', '!=': '!==',
   }[op] || op;
 }
 
@@ -128,9 +130,10 @@ Object.assign(ForStatement.prototype, {
 
 Object.assign(FunctionCall.prototype, {
   gen() {
-    const fun = this.callee;
+    const fun = this.callee; // THIS SETS fun TO UNDEFINED!!!
     const params = {};
     const args = Array(this.args.length).fill(undefined);
+    console.log(fun);
     fun.params.forEach((p, i) => { params[p.id] = i; });
     this.args.forEach((a, i) => { args[a.isPositionalArgument ? i : params[a.id]] = a; });
     return `${jsName(fun)}(${args.map(a => (a ? a.gen() : 'undefined')).join(', ')})`;

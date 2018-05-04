@@ -7,7 +7,8 @@ module.exports = class FunctionCall {
   analyze(context) {
     if (context.hasBeenDeclared(this.id)) {
       const func = context.lookup(this.id);
-      this.type = func.Return;
+      this.type = func.type;
+      this.params = func.params;
 
       if (this.args.length !== func.params.length) {
         throw new Error(`🔥 WARNING🔥

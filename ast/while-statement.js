@@ -8,7 +8,7 @@ module.exports = class WhileStatement {
   analyze(context) {
     this.test.analyze(context);
     const bodyContext = context.createChildContextForLoop();
-    this.body.forEach(s => s.analyze(bodyContext));
+    this.body.forEach((s) => { s.analyze(bodyContext); });
   }
 
   optimize() {
