@@ -37,11 +37,11 @@ Pycante {
   Exp7           = Exp7 "." FunctionCall   -- methodCall
                  | Exp7 "[" Exp "]"        -- subscripted
                  | NumberLiteral
-                 | Dictionary
                  | StringLiteral
                  | BoolLiteral
                  | FunctionCall
-                 | id                      -- id
+                 | Dictionary 
+                 | id                  -- id
                  | List
                  | WhatExp
                  | "(" Exp ")"             -- parens
