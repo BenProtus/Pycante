@@ -1,10 +1,10 @@
 module.exports = class DecrementExpression {
-  constructor(decrement, op) {
-    this.op = op;
+  constructor(decrement, operand) {
+    Object.assign(this, { decrement, operand });
   }
 
   analyze(context) {
-    this.op.analyze(context);
+    this.operand.analyze(context);
   }
 
   optimize() {
