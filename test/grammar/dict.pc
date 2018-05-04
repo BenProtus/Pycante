@@ -1,1 +1,9 @@
-let dict  =  x:10, y:12, z:20.
+let dictionary = x:10,
+                 y:3,
+                 z:10.
+
+
+let webster = aardvark: 1,
+              acapella: "song w/o instruments",
+              pycante: "The HOTTEST programming language",
+              spicy: true.
