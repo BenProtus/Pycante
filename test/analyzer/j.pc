@@ -1,1 +1,10 @@
-let x=1
+let x=8*5
+let y = 200
+print: x+2
+if (y>300)
+    print: y-x/4
+else if (false)
+    print: 0
+else
+    print: 1
+end

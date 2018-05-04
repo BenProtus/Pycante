@@ -8,7 +8,6 @@ module.exports = class IfStatement {
     if (this.alternate) {
       this.alternate.forEach(s => s.analyze(context.createChildContextForBlock()));
     }
-    context.assertInFunction('if statement is not inside a function.');
   }
 
   optimize() {

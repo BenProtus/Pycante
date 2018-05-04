@@ -46,12 +46,12 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Statement_inc(op, exp) { return new IncrementStat(op.sourceString, exp.ast()); },
   Statement_dec(op, exp) { return new DecrementStat(op.sourceString, exp.ast()); },
   VarDec(_1, id, _2, exp) { return new VarDec(id.sourceString, exp.ast()); },
-  FuncDec(_1, id, _2, params, _3, type, statement, Return, _4) {
+  FuncDec(_1, id, _2, params, _3, type, statement, returnExpression, _4) {
     return new FuncDec(
       id.sourceString, params.ast(),
       NamedType.withName(type.sourceString),
       statement.ast(),
-      Return.ast()
+      returnExpression.ast(),
     );
   },
 
@@ -120,7 +120,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   PrintStatement(_, e) { return new PrintStatement(e.ast()); },
   Test(_1, exp, _2) { return exp.ast(); },
 
-  BoolLiteral(_) { return new BoolLiteral(!!this.sourceString); },
+  BoolLiteral(_) { return new BoolLiteral(this.sourceString === 'true'); },
   NumberLiteral(_) { return new NumberLiteral(+this.sourceString); },
   StringLiteral(_1, chars, _6) { return new StringLiteral(this.sourceString); },
 

@@ -24,8 +24,8 @@ const ReturnStatement = require('../ast/return-statement');
 const ForStatement = require('../ast/for-loop');
 const WhileStatement = require('../ast/while-statement');
 const IfStatement = require('../ast/if-statement');
+const PrintStatement = require('../ast/print-statement');
 const BinaryExpression = require('../ast/binary-expression');
-const UnaryExpression = require('../ast/unary-expression');
 const IdExpression = require('../ast/id-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
 const Variable = require('../ast/variable');
@@ -85,7 +85,6 @@ function generateLibraryFunctions() {
     emit(`function ${jsName(entity)}(${params}) {${body}}`);
   }
   // This is sloppy. There should be a better way to do this.
-  generateLibraryStub('print', '_', 'console.log(_);');
   generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);');
 }
 
@@ -181,6 +180,12 @@ Object.assign(Parameter.prototype, {
   },
 });
 
+Object.assign(PrintStatement.prototype, {
+  gen() {
+    emit(`console.log(${this.expression.gen()});`);
+  },
+});
+
 Object.assign(Program.prototype, {
   gen() {
     generateLibraryFunctions();
@@ -210,15 +215,11 @@ Object.assign(SubscriptedExpression.prototype, {
   },
 });
 
-Object.assign(UnaryExpression.prototype, {
-  gen() { return `(${makeOp(this.op)} ${this.operand.gen()})`; },
-});
-
 Object.assign(VariableDeclaration.prototype, {
   gen() {
-    const variables = this.variables.map(v => v.gen());
-    const initializers = this.initializers.map(i => i.gen());
-    emit(`let ${bracketIfNecessary(variables)} = ${bracketIfNecessary(initializers)};`);
+    const variable = this.variable.gen();
+    const initializer = this.initializer.gen();
+    emit(`let ${variable} = ${initializer};`);
   },
 });
 
