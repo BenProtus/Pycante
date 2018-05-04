@@ -1,12 +1,12 @@
-const NumericLiteral = require('./numeric-literal');
-
 module.exports = class Decrement {
-  constructor(dec, operand) {
-    Object.assign(this, { dec, operand });
+  constructor(decrement, operand) {
+    Object.assign(this, { decrement, operand });
   }
-  analyze() { // eslint-disable-line class-methods-use-this
-    // Do something
+
+  analyze(context) { // eslint-disable-line class-methods-use-this
+    this.operand.analyze(context);
   }
+
   optimize() {
     return this;
   }

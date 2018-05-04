@@ -1,10 +1,10 @@
 module.exports = class IncrementExpression {
-  constructor(increment, op) {
-    this.op = op;
+  constructor(increment, operand) {
+    Object.assign(this, { increment, operand });
   }
 
-  analyze() { // eslint-disable-line class-methods-use-this
-    // Do something
+  analyze(context) {
+    this.operand.analyze(context);
   }
 
   optimize() {

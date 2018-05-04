@@ -30,6 +30,11 @@ const IdExpression = require('../ast/id-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
 const Variable = require('../ast/variable');
 
+const IncrementStatement = require('../ast/increment-statement');
+const IncrementExpression = require('../ast/increment-expression');
+const DecrementStatement = require('../ast/decrement-statement');
+const DecrementExpression = require('../ast/decrement-expression');
+
 // const Argument = require('../ast/argument');
 const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
@@ -112,6 +117,14 @@ Object.assign(BooleanLiteral.prototype, {
   gen() { return `${this.value}`; },
 });
 
+Object.assign(DecrementExpression.prototype, {
+  gen() { return `${this.operand}--`; },
+});
+
+Object.assign(DecrementStatement.prototype, {
+  gen() { return `${this.operand}--`; },
+});
+
 // Object.assign(BreakStatement.prototype, {
 //   gen() { return 'break;'; },
 // });
@@ -122,7 +135,7 @@ Object.assign(BooleanLiteral.prototype, {
 
 Object.assign(ForStatement.prototype, {
   gen() {
-    emit(`for (${this.test.gen()}; ${this.test.gen()}; ${this.test.gen()}) {`);
+    emit(`for (${this.initialization.gen()}; ${this.condition.gen()}; ${this.iterator.gen()}) {`);
     genStatementList(this.body);
     emit('}');
   },
@@ -169,6 +182,14 @@ Object.assign(IfStatement.prototype, {
     }
     emit('}');
   },
+});
+
+Object.assign(IncrementExpression.prototype, {
+  gen() { return `${this.operand}++`; },
+});
+
+Object.assign(IncrementStatement.prototype, {
+  gen() { return `${this.operand}++`; },
 });
 
 Object.assign(NumericLiteral.prototype, {
