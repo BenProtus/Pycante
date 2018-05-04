@@ -1,6 +1,0 @@
-♨️ Pepper
-    let str = "spice is nice"
-    🌶️ f(self)
-        return str
-    end
-end

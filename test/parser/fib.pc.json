@@ -2,7 +2,6 @@
   "statements": [
     {
       "function": {
-        "Return": {"id": "a"},
         "body": [
           {
             "id": "a",
@@ -45,6 +44,11 @@
               "left": {"id": "b"},
               "op": ">",
               "right": {"id": "n"}
+            }
+          },
+          {
+            "returnValue": {
+              "id": "a"
             }
           }
         ],
