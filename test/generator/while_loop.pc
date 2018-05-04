@@ -1,0 +1,6 @@
+while (x > 50)
+    let id = 60
+    if (id < 6)
+        ++id
+    end
+end

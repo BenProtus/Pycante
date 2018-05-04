@@ -1,0 +1,4 @@
+🌶 average (x: Number) Number
+    let result = 50/x
+    return result
+end
