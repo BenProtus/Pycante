@@ -1,5 +1,3 @@
-const Type = require('./NamedType');
-
 module.exports = class List {
   constructor(exp, lastExp) {
     this.exp = exp;
@@ -16,5 +14,4 @@ module.exports = class List {
   optimize() {
     return this;
   }
-
 };

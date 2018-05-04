@@ -1,4 +1,3 @@
-
 module.exports = class DictTerm {
   constructor(id, value) {
     this.id = id;
