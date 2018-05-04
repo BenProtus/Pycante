@@ -45,7 +45,7 @@ function emit(line) {
 function genStatementList(statements) {
   indentLevel += 1;
   statements.forEach((statement) => {
-    if (statement !== 'end') { console.log(statement); statement.gen(); }
+    if (statement !== 'end') { statement.gen(); }
   });
   indentLevel -= 1;
 }
@@ -133,7 +133,7 @@ Object.assign(FunctionCall.prototype, {
     const fun = this.callee; // THIS SETS fun TO UNDEFINED!!!
     const params = {};
     const args = Array(this.args.length).fill(undefined);
-    console.log(fun);
+    // console.log(fun);
     fun.params.forEach((p, i) => { params[p.id] = i; });
     this.args.forEach((a, i) => { args[a.isPositionalArgument ? i : params[a.id]] = a; });
     return `${jsName(fun)}(${args.map(a => (a ? a.gen() : 'undefined')).join(', ')})`;
