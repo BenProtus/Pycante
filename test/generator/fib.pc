@@ -1,0 +1,11 @@
+🌶  fib(n: Number) Number
+    let a = 5
+    let b = a + 5
+    while (b > n)
+        b = b - 1
+        a = a * b
+    end
+    return a
+end
+print: fib(5)
+print: fib(10)
