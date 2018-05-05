@@ -1,1 +1,14 @@
-{}
+{
+	"statements": [{
+		"id": "dict",
+		"initializer": {
+			"termList": [
+				[
+					",",
+					","
+				],
+				"."
+			]
+		}
+	}]
+}

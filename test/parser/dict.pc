@@ -1,1 +1,1 @@
-let dictionary = x:10, y:3, z:10.
+let dict = x:10, y:3, z:10.

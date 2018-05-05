@@ -34,16 +34,18 @@ Pycante {
   Exp6           = increment Exp7          -- inc
                  | decrement Exp7          -- dec
                  | Exp7
+
   Exp7           = Exp7 "." FunctionCall   -- methodCall
+                 | Dictionary
                  | Exp7 "[" Exp "]"        -- subscripted
                  | NumberLiteral
                  | StringLiteral
                  | BoolLiteral
                  | FunctionCall
-                 | Dictionary 
                  | id                  -- id
                  | List
                  | WhatExp
+
                  | "(" Exp ")"             -- parens
   Exps           = Exp ("," Exp)*
 
